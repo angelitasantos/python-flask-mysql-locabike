@@ -1,0 +1,51 @@
+:root {
+    --green1: #024053;
+    --green2: #136B69;
+    --green3: #2A836B;
+    --green4: #499C70;
+    --green5: #6EB47D;
+    --green6: #9DCC9B;
+    --green7: #D5E4CF;
+    --red1: #842029;
+    --red2: #dc3545;
+    --red3: #f5c2c7;
+    --light: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    list-style: none;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2.7em;
+}
+
+h2 {
+    font-size: 2.4em;
+}
+
+h3 {
+    font-size: 2.1em;
+}
+
+h4 {
+    font-size: 1.8em;
+}
+
+h5 {
+    font-size: 1.5em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1em;
+}
