@@ -54,3 +54,22 @@
     align-items: center;
     margin-right: 30px;
 }
+
+
+/* ############################################################################ */
+
+.redes-socials-icons a {
+    font-size: 1.5em;
+    color: var(--green7);
+    padding-right: 10px;
+}
+
+.redes-socials-icons a:hover {
+    color: var(--light);
+}
+
+#copyright {
+    color: var(--green7);
+    margin-top: 5px;
+    text-align: center;
+}
