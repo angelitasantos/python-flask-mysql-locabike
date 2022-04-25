@@ -1,0 +1,27 @@
+@import url(./root.css);
+
+@media (max-width: 600px) {
+    .navbar {
+        height: 80px;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        margin-right: 0px;
+        max-width: 120px;
+    }
+
+    .navbar-menu a {
+        padding-bottom: 5px;
+    }
+}
+
+@media (max-width: 350px) {
+    .navbar-logo {
+        width: 180px;
+    }
+
+    .navbar-logo img {
+        margin-left: 10px;
+    }
+}
