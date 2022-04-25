@@ -1,0 +1,56 @@
+@import url(./root.css);
+
+
+/* ############################################################################ */
+
+.navbar {
+    z-index: 1;
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    background-color: var(--green2);
+    color: var(--green7);
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-container {
+    max-width: 992px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+}
+
+.navbar .navbar-container {
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    background-color: var(--light);
+    border-radius: 50%;
+    padding: 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.navbar-logo img {
+    margin-right: 10px;
+}
+
+.navbar-menu {
+    display: flex;
+    max-width: 260px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 30px;
+}

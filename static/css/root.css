@@ -49,3 +49,12 @@ h6 {
 p {
     font-size: 1em;
 }
+
+header nav a {
+    color: var(--green7);
+    font-size: 1.2em;
+}
+
+header nav a:hover {
+    color: var(--green6);
+}
