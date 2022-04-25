@@ -10,12 +10,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/responsive.css') }}">
     <script src="https://kit.fontawesome.com/bfe7a3e22e.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
 </head>
 
 <body>
+
     {% include 'layout/header.html' %}
-    <h1>Home</h1>
+
+    {% block container %}
+    {% endblock %}
+
     {% include 'layout/footer.html' %}
+
+    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
 </body>
 
 </html>
