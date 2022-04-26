@@ -1,5 +1,18 @@
 @import url(./root.css);
 
+
+@media (max-width: 700px) {
+    .about {
+        margin-top: 60px;
+        padding: 50px;
+    }
+
+    .img-about {
+        width: 256px;
+        height: 183px;
+    }
+}
+
 @media (max-width: 600px) {
     .navbar {
         height: 80px;
@@ -23,5 +36,10 @@
 
     .navbar-logo img {
         margin-left: 10px;
+    }
+
+    .img-about {
+        width: 192px;
+        height: 137px;
     }
 }

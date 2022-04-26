@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<section class="about">
+    <div class="center">
+        <div class="center">
+            <h1 class="title">Sobre</h1>
+            <h6 id="txtAbout">O sistema LocaBike é composto por estações inteligentes, conectadas a uma central
+                de operações via wireless, alimentadas por energia solar, distribuídas em pontos estratégicos
+                da cidade, onde os clientes cadastrados podem retirar uma bicicleta, utilizá-la em seus trajetos
+                e devolvê-la na mesma, ou em outra estação.
+            </h6>
+        </div>
+        <div class="center">
+            <img src="/static/img/slides/slide1.jpg" alt="" class="img-about">
+        </div>
+    </div>
+</section>
+
+{% include '/pages/services.html' %}
+{% endblock %}

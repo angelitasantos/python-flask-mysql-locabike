@@ -1,6 +1,31 @@
 @import url(./root.css);
 
 
+.center {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2%;
+    text-align: center;
+}
+
+.title {
+    color: var(--green1);
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.title:after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-top: 10px;
+    background: -webkit-linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+    background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
+}
+
+
 /* ############################################################################ */
 
 .navbar {
@@ -151,4 +176,70 @@
 
 .slide3 {
     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8) 100%), url(/static/img/slides/slide3.jpg);
+}
+
+
+/* ############################################################################ */
+
+.about {
+    padding: 100px;
+}
+
+#txtAbout {
+    margin: 30px 0;
+    line-height: 30px;
+    text-align: center;
+    padding: 10px 0;
+    color: var(--green1);
+}
+
+.img-about {
+    width: 512px;
+    height: 365px;
+}
+
+
+/* ############################################################################ */
+
+.services {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.services-container {
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 350px;
+    min-height: 200px;
+    margin: 20px 10px;
+    padding: 25px 10px;
+    border: 2px solid var(--green2);
+    border-radius: 20px;
+    box-shadow: inset 0 0 1em var(--green6), 0 0 1em var(--green2);
+}
+
+.service-card img {
+    width: 100px;
+    height: 100px;
+}
+
+.service-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.service-card p b {
+    font-size: 0.5em;
+    font-weight: bold;
 }
