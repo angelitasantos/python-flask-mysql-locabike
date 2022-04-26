@@ -1,16 +1,4 @@
-appdirs==1.4.3
-apturl==0.5.2
-argon2-cffi==21.3.0
-argon2-cffi-bindings==21.2.0
-asttokens==2.0.5
-atomicwrites==1.1.5
-attrs==21.4.0
-backcall==0.2.0
 bcrypt==3.1.7
-beautifulsoup4==4.8.2
-bleach==4.1.0
-blinker==1.4
-Brlapi==0.7.0
 certifi==2019.11.28
 cffi==1.15.0
 chardet==3.0.4
