@@ -2,9 +2,12 @@
 
 
 @media (max-width: 700px) {
-    .about {
+
+    .about,
+    .contact {
         margin-top: 60px;
         padding: 50px;
+        overflow-y: hidden;
     }
 
     .img-about {
@@ -27,6 +30,10 @@
     .navbar-menu a {
         padding-bottom: 5px;
     }
+
+    .contact-data {
+        margin-bottom: 35px;
+    }
 }
 
 @media (max-width: 350px) {
@@ -42,4 +49,13 @@
         width: 192px;
         height: 137px;
     }
+
+    .section-contact {
+        padding: 30px 15px;
+    }
+
+    .select select {
+        width: 230px;
+    }
+
 }

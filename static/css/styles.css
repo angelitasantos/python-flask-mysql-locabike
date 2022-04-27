@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.bold {
+    font-weight: 800;
+}
+
 .title {
     color: var(--green1);
     font-weight: bold;
@@ -182,7 +186,7 @@
 /* ############################################################################ */
 
 .about {
-    padding: 100px;
+    padding: 100px 0;
 }
 
 #txtAbout {
@@ -242,4 +246,105 @@
 .service-card p b {
     font-size: 0.5em;
     font-weight: bold;
+}
+
+
+/* ########################################################### */
+
+.contact {
+    padding: 100px 0 50px 0;
+}
+
+.contact-container {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contact div p {
+    padding-bottom: 15px;
+}
+
+.section-contact {
+    padding: 30px;
+}
+
+
+/* ########################################################### */
+
+button,
+input,
+select,
+textarea {
+    margin: 0;
+}
+
+.field:not(:last-child) {
+    margin-bottom: 0.75em;
+}
+
+.label {
+    color: var(--green1);
+    display: block;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.label:not(:last-child) {
+    margin-bottom: 0.5em;
+}
+
+.input,
+.textarea,
+.select select {
+    background-color: var(--light);
+    border-color: var(--green2);
+    border-radius: 4px;
+    color: var(--green1);
+    font-size: 1em;
+    padding: calc(0.6em - 1px);
+}
+
+.input,
+.textarea {
+    box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05);
+    max-width: 100%;
+    width: 100%;
+}
+
+.textarea {
+    display: block;
+    max-width: 100%;
+    min-width: 100%;
+    resize: none;
+}
+
+.select {
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    vertical-align: top;
+}
+
+.select select {
+    cursor: pointer;
+    display: block;
+    width: 250px;
+    outline: none;
+}
+
+.input-submit {
+    background-color: var(--green1);
+    border-color: var(--green2);
+    border-radius: 4px;
+    color: var(--green7);
+    font-size: 1em;
+    padding: calc(0.6em - 1px);
+}
+
+.input-submit:hover {
+    background-color: var(--green5);
+    color: var(--green1);
 }
