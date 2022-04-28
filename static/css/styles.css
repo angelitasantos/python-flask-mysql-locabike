@@ -348,3 +348,37 @@ textarea {
     background-color: var(--green5);
     color: var(--green1);
 }
+
+
+/* ########################################################### */
+
+.section-admin {
+    display: flex;
+    justify-content: center;
+    margin: 120px 0;
+    padding: 20px;
+}
+
+.content {
+    width: 500px;
+    margin: 0 10px;
+    position: relative;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+#register,
+#login {
+    top: 0px;
+    width: 100%;
+    padding: 18px 6% 10px 6%;
+    margin: 0 0 30px 0;
+    background: #f7f7f7;
+    border: 1px solid rgba(147, 184, 189, 0.8);
+    border-radius: 5px;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+}
