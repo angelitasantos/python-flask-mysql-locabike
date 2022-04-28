@@ -34,3 +34,20 @@ class ModelUser:
                     flash("Username Not Found!", "danger")
             except Exception as e:
                 print(e)
+
+
+    def AdminUpdate(self):
+        if request.method == 'POST':
+            name = request.form['aname']
+            sitedata = request.form['sitedata']
+            companies = request.form['companies']
+            stores = request.form['stores']
+            admins = request.form['admins']
+            aid = session['aid']
+            
+            cursor = mysql.connection.cursor()
+            cursor.execute('''UPDATE admins 
+            SET aname = %s, sitedata = %s, companies = %s, stores = %s, admins = %s
+            WHERE aid = %s''',[name, sitedata, companies, stores, admins, aid])
+            mysql.connection.commit()
+            flash("Admin Profile Updated Successfully!", "success")

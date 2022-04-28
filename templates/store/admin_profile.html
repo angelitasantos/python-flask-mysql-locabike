@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<section class="section-admin">
+    <div class="content">
+        <div id="login">
+            <h2 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h2>
+            <br>
+            <form method="post" action="/update_admin">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <div>
+                    <label class="label">Nome</label>
+                    <input type="text" name="aname" class="input" value="{{ res.aname }}">
+                </div>
+                <div>
+                    <label class="label">Username</label>
+                    <input type="email" name="aemail" disabled class="input" value="{{ res.amail }}">
+                </div>
+                <div>
+                    <label class="label">Password</label>
+                    <input type="password" name="apassword" disabled class="input" value="{{ res.apassword }}">
+                </div>
+                <div class="flex-div">
+                    <div class="mright5">
+                        <label class="label">Site *</label>
+                        <input type="text" name="sitedata" class="input" value="{{ res.sitedata }}">
+                    </div>
+                    <div class="mright5">
+                        <label class="label">Company *</label>
+                        <input type="text" name="companies" class="input" value="{{ res.companies }}">
+                    </div>
+                    <div class="mright5">
+                        <label class="label">Store *</label>
+                        <input type="text" name="stores" class="input" value="{{ res.stores }}">
+                    </div>
+                    <div>
+                        <label class="label">Admin *</label>
+                        <input type="text" name="admins" class="input" value="{{ res.admins }}">
+                    </div>
+                </div>
+                <div class="center">
+                    <input type="submit" class="input-submit" value="Update Admin Profile">
+                </div>
+                <div>
+                    <sub>* 0 = Não Habilitado - 1 = Habilitado</sub>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

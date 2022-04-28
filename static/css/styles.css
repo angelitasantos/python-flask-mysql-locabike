@@ -29,6 +29,15 @@
     background: linear-gradient(left, rgba(147, 184, 189, 0) 0%, rgba(147, 184, 189, 0.8) 20%, rgba(147, 184, 189, 1) 53%, rgba(147, 184, 189, 0.8) 79%, rgba(147, 184, 189, 0) 100%);
 }
 
+.flex-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-div .mright5 {
+    margin-right: 5px;
+}
+
 
 /* ############################################################################ */
 
@@ -307,6 +316,12 @@ textarea {
     padding: calc(0.6em - 1px);
 }
 
+input[type="email"]:disabled,
+input[type="password"]:disabled {
+    background-color: var(--green7);
+    color: var(--green1);
+}
+
 .input,
 .textarea {
     box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05);
@@ -355,7 +370,7 @@ textarea {
 .section-admin {
     display: flex;
     justify-content: center;
-    margin: 120px 0;
+    margin: 120px 0 40px 0;
     padding: 20px;
 }
 
