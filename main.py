@@ -1,12 +1,7 @@
 from flask import Flask, render_template
-import dotenv
-import os
-
-dotenv.load_dotenv(dotenv.find_dotenv())
-secret_key = os.getenv('SECRET_KEY')
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = secret_key
+app.config['SECRET_KEY'] = 'thisisasecretkey'
 
 
 @app.route('/')
