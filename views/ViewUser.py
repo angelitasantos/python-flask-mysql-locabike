@@ -25,13 +25,12 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/admin_profile')
-def admin_profile():
+@app.route('/admin_profile/<string:id>')
+def admin_profile(id):
     title = 'Admin Profile'
     try:
         if session['amail'] != '':
             cursor = mysql.connection.cursor()
-            id = session['aid']
             query = 'SELECT * FROM admins WHERE aid = %s'
             cursor.execute(query,[id])
             data = cursor.fetchone()
@@ -52,10 +51,10 @@ def admin_profile():
     return render_template('/pages/home.html', title = 'Home')
 
 
-@app.route('/update_admin',methods=['GET','POST'])
+@app.route('/update_admin', methods=['GET','POST'])
 def update_admin():
     ModelUser.AdminUpdate(self)
-    return redirect('admin_profile')
+    return redirect('admin_list')
 
 
 @app.route('/admin_register', methods=['GET', 'POST'])
@@ -73,3 +72,25 @@ def admin_register():
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
+
+
+@app.route('/admin_list')
+def admin_list():
+    title = 'View Admins'
+    try:
+        if session['amail'] != '' and session['admins'] == 1:
+            cursor = mysql.connection.cursor()
+            query = 'SELECT * FROM admins'
+            cursor.execute(query)
+            data = cursor.fetchall()
+            cursor.close()
+            count = cursor.rowcount
+            if count == 0:
+                flash('Admins Not Found...!!!!', 'danger')
+            return render_template('/store/admin_list.html', res = data, title = title)
+        else:
+            redirect(url_for('home'))
+    except Exception as e:
+        print(e)
+    return render_template('/pages/home.html')
+

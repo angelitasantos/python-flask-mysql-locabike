@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<section class="section-list">
+    <div class="">
+        <div class="">
+            <h2 class="title"><i class="fa fa-users"> {{ title }}</i></h2>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="">S.No</th>
+                        <th class="">ID</th>
+                        <th class="">Name</th>
+                        <th class="">Mail</th>
+                        <th class="center">Sitedata</th>
+                        <th class="center">Companies</th>
+                        <th class="center">Stores</th>
+                        <th class="center">Admins</th>
+                        <th class="center">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in res %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ data.aid }}</td>
+                        <td>{{ data.aname }}</td>
+                        <td>{{ data.amail }}</td>
+                        <td class="center">{{ data.sitedata }}</td>
+                        <td class="center">{{ data.companies }}</td>
+                        <td class="center">{{ data.stores }}</td>
+                        <td class="center">{{ data.admins }}</td>
+                        <td class="center"><a href="{{ url_for('admin_profile', id=data['aid']) }}" class=""
+                                onclick="return confirm('Are you sure to edit?')">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <p>Admin : {{ session["aname"] }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -43,7 +43,7 @@ class ModelUser:
             companies = request.form['companies']
             stores = request.form['stores']
             admins = request.form['admins']
-            aid = session['aid']
+            aid = request.form['aid']
             
             cursor = mysql.connection.cursor()
             cursor.execute('''UPDATE admins 

@@ -96,6 +96,14 @@
 
 /* ############################################################################ */
 
+.footer-table {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 0%);
+    display: flex;
+}
+
 .redes-socials-icons a {
     font-size: 1.5em;
     color: var(--green7);
@@ -396,4 +404,13 @@ form div {
     animation-duration: 0.5s;
     animation-timing-function: ease;
     animation-fill-mode: both;
+}
+
+
+/* ########################################################### */
+
+.section-list {
+    min-height: 600px;
+    margin: 30px 20px;
+    padding: 70px 0;
 }
