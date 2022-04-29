@@ -11,8 +11,8 @@ userpassword = os.getenv('mailpassword')
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = usermail
-app.config['MAIL_PASSWORD'] = userpassword
+app.config['MAIL_USERNAME'] = 'angelitasantos@gmail.com'
+app.config['MAIL_PASSWORD'] = 'kwwpchgfbgsusswi'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
