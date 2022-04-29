@@ -34,6 +34,15 @@
     .contact-data {
         margin-bottom: 35px;
     }
+
+    .flex-div {
+        display: inline;
+    }
+
+    .flex-div .mright5 {
+        margin-right: 0;
+    }
+
 }
 
 @media (max-width: 350px) {

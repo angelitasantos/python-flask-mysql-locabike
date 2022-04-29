@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<section class="section-admin">
+    <div class="content">
+        <div id="login">
+            <h2 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h2>
+            <br>
+            <form method="post" action="">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <div>
+                    <label class="label">Name</label>
+                    <input type="text" name="aname" class="input" placeholder="name" required="required">
+                </div>
+                <div>
+                    <label class="label">Username</label>
+                    <input type="email" name="amail" class="input" placeholder="username" required="required">
+                </div>
+                <div>
+                    <label class="label">Password</label>
+                    <input type="password" name="apassword" class="input" placeholder="password" required="required">
+                </div>
+                <div>
+                    <label class="label">Confirm Password</label>
+                    <input type="password" name="aconfirmpassword" class="input" placeholder="confirm password"
+                        required="required">
+                </div>
+                <div class="flex-div">
+                    <div class="mright5">
+                        <label class="label">Site *</label>
+                        <input type="text" name="sitedata" class="input" value="0">
+                    </div>
+                    <div class="mright5">
+                        <label class="label">Company *</label>
+                        <input type="text" name="companies" class="input" value="0">
+                    </div>
+                    <div class="mright5">
+                        <label class="label">Store *</label>
+                        <input type="text" name="stores" class="input" value="0">
+                    </div>
+                    <div>
+                        <label class="label">Admin *</label>
+                        <input type="text" name="admins" class="input" value="0">
+                    </div>
+                </div>
+                <div class="center">
+                    <input type="submit" class="input-submit" value="Create Admin Profile">
+                </div>
+                <div>
+                    <sub>* 0 = Não Habilitado - 1 = Habilitado</sub>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

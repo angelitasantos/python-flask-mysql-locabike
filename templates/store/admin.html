@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<section class="section-admin section-login">
+    <div class="content">
+        <div id="login">
+            <h2 class="title"><i class="fa fa-user"> {{ title }}</i></h2>
+            <br>
+            <form method="post" action="">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <div>
+                    <label class="label">Username</label>
+                    <input type="email" name="amail" class="input" placeholder="email" required="required" />
+                </div>
+                <div>
+                    <label class="label">Password</label>
+                    <input type="password" name="apassword" class="input" placeholder="password" required="required" />
+                </div>
+                <div>
+                    <input type="checkbox" name="manterlogado" value="" />
+                    <label>Remember me</label>
+                </div>
+                <div class="center">
+                    <input type="submit" name="alogin" class="input-submit" value="Sign In" />
+                </div>
+                <br>
+                <div>
+                    <div>Is Client? <a href="{{ url_for('home') }}" class="input-submit">Click Here</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
