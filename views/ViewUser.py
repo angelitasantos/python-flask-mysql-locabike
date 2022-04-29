@@ -7,12 +7,12 @@ def admin():
     title = 'Admin'
     ModelUser.AdminLogin(self)
     try:
-        if session['aname'] != '':
+        if session['amail'] != '':
             return render_template('/pages/about.html', title = 'About')
     except Exception as e:
         print(e)
     try:
-        if session['name'] != '':
+        if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
@@ -29,7 +29,7 @@ def logout():
 def admin_profile():
     title = 'Admin Profile'
     try:
-        if session['aname'] != '':
+        if session['amail'] != '':
             cursor = mysql.connection.cursor()
             id = session['aid']
             query = 'SELECT * FROM admins WHERE aid = %s'
@@ -45,7 +45,7 @@ def admin_profile():
     except Exception as e:
         print(e)
     try:
-        if session['aname'] != '':
+        if session['umail'] != '':
             return render_template('/pages/about.html', title = 'About')
     except Exception as e:
         print(e)
@@ -56,3 +56,20 @@ def admin_profile():
 def update_admin():
     ModelUser.AdminUpdate(self)
     return redirect('admin_profile')
+
+
+@app.route('/admin_register', methods=['GET', 'POST'])
+def admin_register():
+    title = 'Admin Register'
+    ModelUser.AdminRegister(self)
+    try:
+        if session['amail'] != '' and session['admins'] == 1:
+            return render_template('/store/admin_register.html', title = title)
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
+            return render_template('/pages/about.html', title = 'About')
+    except Exception as e:
+        print(e)
+    return render_template('/pages/home.html', title = 'Home')
