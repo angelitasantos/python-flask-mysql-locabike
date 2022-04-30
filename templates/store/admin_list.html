@@ -18,15 +18,16 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="">S.No</th>
-                        <th class="">ID</th>
-                        <th class="">Name</th>
-                        <th class="">Mail</th>
-                        <th class="center">Sitedata</th>
-                        <th class="center">Companies</th>
-                        <th class="center">Stores</th>
-                        <th class="center">Admins</th>
-                        <th class="center">Edit</th>
+                        <th class="bold">S.No</th>
+                        <th class="bold">ID</th>
+                        <th class="bold">Name</th>
+                        <th class="bold">Mail</th>
+                        <th class="center bold">Sitedata</th>
+                        <th class="center bold">Companies</th>
+                        <th class="center bold">Stores</th>
+                        <th class="center bold">Admins</th>
+                        <th class="center bold">Edit</th>
+                        <th class="center bold">Del</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,8 +41,11 @@
                         <td class="center">{{ data.companies }}</td>
                         <td class="center">{{ data.stores }}</td>
                         <td class="center">{{ data.admins }}</td>
-                        <td class="center"><a href="{{ url_for('admin_profile', id=data['aid']) }}" class=""
-                                onclick="return confirm('Are you sure to edit?')">Edit</a></td>
+                        <td class="center"><a href="{{ url_for('admin_profile', id=data['aid']) }}" class="input-edit"
+                                onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a></td>
+                        <td class="center"><a href="{{ url_for('delete_admins', id=data['aid']) }}" class="input-delete"
+                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>

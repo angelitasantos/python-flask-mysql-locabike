@@ -94,3 +94,12 @@ def admin_list():
         print(e)
     return render_template('/pages/home.html')
 
+
+@app.route('/delete_admins/<string:id>', methods=['GET', 'POST'])
+def delete_admins(id):
+    cursor = mysql.connection.cursor()
+    cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
+    mysql.connection.commit()
+    flash('Admin Deleted Successfully', 'danger')
+    return redirect(url_for('admin_list'))
+

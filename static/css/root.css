@@ -9,6 +9,11 @@
     --red1: #842029;
     --red2: #dc3545;
     --red3: #f5c2c7;
+    --orange1: #E65100;
+    --orange2: #F57C00;
+    --orange3: #FF9800;
+    --orange4: #FFB74D;
+    --orange5: #FFCC80;
     --light: #f8f9fa;
 }
 
@@ -48,6 +53,10 @@ h6 {
 
 p {
     font-size: 1em;
+}
+
+.bold {
+    font-weight: 800;
 }
 
 header nav a {

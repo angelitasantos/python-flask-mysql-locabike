@@ -1,7 +1,7 @@
 USE heroku_b1c0a9f2a3d0817;
 
 CREATE TABLE IF NOT EXISTS admins (
-    aid SERIAL,
+    aid BIGINT AUTO_INCREMENT,
     aname VARCHAR(50) NOT NULL,
     apassword CHAR(60) NOT NULL,
     amail VARCHAR(50) NOT NULL,

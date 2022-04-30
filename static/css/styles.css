@@ -372,6 +372,34 @@ input[type="password"]:disabled {
     color: var(--green1);
 }
 
+.input-edit {
+    background-color: var(--orange2);
+    border-color: var(--orange5);
+    border-radius: 4px;
+    color: var(--orange5);
+    font-size: 0.8em;
+    padding: calc(0.4em - 1px);
+}
+
+.input-edit:hover {
+    background-color: var(--orange5);
+    color: var(--orange2);
+}
+
+.input-delete {
+    background-color: var(--red1);
+    border-color: var(--red3);
+    border-radius: 4px;
+    color: var(--red3);
+    font-size: 0.8em;
+    padding: calc(0.4em - 1px);
+}
+
+.input-delete:hover {
+    background-color: var(--red3);
+    color: var(--red1);
+}
+
 
 /* ########################################################### */
 
