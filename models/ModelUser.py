@@ -128,3 +128,31 @@ class ModelUser:
         id = "".join(random.sample(all, length))
         return id
 
+
+    def AdminRedefinePass(self):
+        if request.method == 'POST':
+            amail = request.form['amail']
+            acode = request.form['acode']
+
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT * FROM admins WHERE amail = %s and acode = %s', [amail, acode])
+            res = cursor.fetchone()
+
+            if res:
+                anewpassword = request.form['anewpassword']
+                aconfirmnewpassword = request.form['aconfirmnewpassword']
+                newpassword_hash = bcrypt.generate_password_hash(anewpassword).decode('utf-8')
+
+                if request.form['acode'] == res['acode']:
+                    if anewpassword == aconfirmnewpassword:
+                        cursor.execute('''UPDATE admins 
+                        SET apassword = %s
+                        WHERE amail = %s''',[newpassword_hash, amail])
+                        mysql.connection.commit()
+                        flash('Password Redefined Successfully!', 'success')
+                    elif anewpassword != aconfirmnewpassword:
+                        flash('New Password and Confirm New Password Dont Match...!!!!', 'danger')
+            else:
+                flash('Verification Code Dont Correct...!!!!', 'danger')
+
+    

@@ -139,6 +139,16 @@ def update_password():
 @app.route('/admin_passforgot')
 def admin_passforgot():
     title = 'Forgot Password'
+    try:
+        if session['amail'] != '':
+            return render_template('/pages/about.html', title = 'About')
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
+            return render_template('/pages/about.html', title = 'About')
+    except Exception as e:
+        print(e)
     return render_template('/store/admin_passforgot.html', title = title)
     
 
@@ -183,3 +193,19 @@ def send_message_passforgot():
         pass
     return render_template('/store/admin_passforgot.html')
 
+
+@app.route('/admin_passredefine')
+def admin_passredefine():
+    title = 'Redefine Password'
+    try:
+        if session['amail'] != '' or session['umail'] != '':
+            return render_template('/pages/about.html', title = 'About')
+    except Exception as e:
+        print(e)
+    return render_template('/store/admin_passredefine.html', title = title)
+
+
+@app.route('/redefine_password', methods = ['GET', 'POST'])
+def redefine_password():
+    ModelUser.AdminRedefinePass(self)
+    return redirect(url_for('admin_passredefine'))
