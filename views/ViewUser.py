@@ -2,7 +2,7 @@ from models.ModelUser import *
 self = 'self'
 
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin', methods = ['GET', 'POST'])
 def admin():
     title = 'Admin'
     ModelUser.AdminLogin(self)
@@ -51,13 +51,13 @@ def admin_profile(id):
     return render_template('/pages/home.html', title = 'Home')
 
 
-@app.route('/update_admin', methods=['GET','POST'])
+@app.route('/update_admin', methods = ['GET','POST'])
 def update_admin():
     ModelUser.AdminUpdate(self)
-    return redirect('admin_list')
+    return redirect(url_for('admin_list'))
 
 
-@app.route('/admin_register', methods=['GET', 'POST'])
+@app.route('/admin_register', methods = ['GET', 'POST'])
 def admin_register():
     title = 'Admin Register'
     ModelUser.AdminRegister(self)
@@ -95,11 +95,41 @@ def admin_list():
     return render_template('/pages/home.html')
 
 
-@app.route('/delete_admins/<string:id>', methods=['GET', 'POST'])
+@app.route('/delete_admins/<string:id>', methods = ['GET', 'POST'])
 def delete_admins(id):
     cursor = mysql.connection.cursor()
     cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
     mysql.connection.commit()
     flash('Admin Deleted Successfully', 'danger')
     return redirect(url_for('admin_list'))
+
+
+@app.route('/admin_passchange')
+def admin_passchange():
+    title = 'Change Password'
+    try:
+        if session['amail'] != '':
+            cursor = mysql.connection.cursor()
+            id = session['aid']
+            query = 'SELECT * FROM admins WHERE aid = %s'
+            cursor.execute(query,[id])
+            data = cursor.fetchone()
+            cursor.close()
+            return render_template('/store/admin_passchange.html', res = data, title = title)
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
+            return render_template('/pages/about.html', title = 'About')
+    except Exception as e:
+        print(e)
+    return render_template('/pages/home.html', title = 'Home')
+
+
+@app.route('/update_password', methods = ['GET', 'POST'])
+def update_password():
+    ModelUser.AdminUpdatePass(self)
+    session.clear()
+    flash("Password Updated Successfully! Please, Login Again!", "success")
+    return redirect(url_for('admin'))
 

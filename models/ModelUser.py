@@ -22,6 +22,7 @@ class ModelUser:
                     if bcrypt.check_password_hash(pw_hash, apassword):
                         session['aname'] = res['aname']
                         session['amail'] = res['amail']
+                        session['apassword'] = res['apassword']
                         session['sitedata'] = res['sitedata']
                         session['companies'] = res['companies']
                         session['stores'] = res['stores']
@@ -88,3 +89,32 @@ class ModelUser:
                     return render_template('/store/admin_profile.html', title = title)
             except Exception as e:
                 print(e)
+
+
+    def AdminUpdatePass(self):
+        if request.method == 'POST':
+            title = 'Change Password'
+
+            amail = request.form['amail']
+            apassword = request.form['apassword']
+
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
+            res = cursor.fetchone()
+            if res:
+                pw_hash = res['apassword']
+                if bcrypt.check_password_hash(pw_hash, apassword):
+                    anewpassword = request.form['anewpassword']
+                    aconfirmnewpassword = request.form['aconfirmnewpassword']
+                    newpassword_hash = bcrypt.generate_password_hash(anewpassword).decode('utf-8')
+
+                    if anewpassword == aconfirmnewpassword:
+                        cursor.execute('''UPDATE admins 
+                        SET apassword = %s
+                        WHERE amail = %s''',[newpassword_hash, amail])
+                        mysql.connection.commit()
+
+                    elif anewpassword != aconfirmnewpassword:
+                        flash('Password and Confirm Password Dont Match...!!!!', 'danger')
+                else:
+                    flash("Invalid Current Password!", "danger")
