@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS admins (
     companies BOOLEAN DEFAULT 0,
     stores BOOLEAN DEFAULT 0,
     admins BOOLEAN DEFAULT 0,
+    acode CHAR(6) DEFAULT '123456',
     PRIMARY KEY (amail)
 );
 

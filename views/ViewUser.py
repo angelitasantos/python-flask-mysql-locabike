@@ -1,4 +1,6 @@
+from models.ModelMail import *
 from models.ModelUser import *
+
 self = 'self'
 
 
@@ -132,4 +134,52 @@ def update_password():
     session.clear()
     flash("Password Updated Successfully! Please, Login Again!", "success")
     return redirect(url_for('admin'))
+
+
+@app.route('/admin_passforgot')
+def admin_passforgot():
+    title = 'Forgot Password'
+    return render_template('/store/admin_passforgot.html', title = title)
+    
+
+@app.route('/send_message_passforgot', methods = ['GET', 'POST'])
+def send_message_passforgot():
+    title = 'Forgot Password'
+    try:
+        if request.method == 'POST':
+            code = ModelUser.gerar_codigo_verificacao(self)
+            email = request.form['amail']
+            subject = 'Forgot Password'
+            msg = f'''Sent Verification Code: 
+            {code}
+            Link Redefine Password
+            '''
+
+            message = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [email])
+            message.body = msg
+            mail.send(message)
+
+            try:
+                cursor = mysql.connection.cursor()
+                cursor.execute('SELECT * FROM admins WHERE amail = %s', [email])
+                cursor.fetchone()
+                cursor.close()
+                count = cursor.rowcount
+                if count != 0:
+                    cursor = mysql.connection.cursor()
+                    cursor.execute('''UPDATE admins 
+                    SET acode = %s
+                    WHERE amail = %s''',[code, email])
+                    mysql.connection.commit()
+                    flash('Mail Sent Successfully!', 'success')
+                    return render_template('/store/admin_passforgot.html', title = title)
+                else:
+                    flash('Admin Not Found...!!!!', 'danger')
+                    return render_template('/store/admin_passforgot.html', title = title)
+            except Exception as e:
+                print(e)
+    except:
+        flash('Mail Dont Sent', 'danger')
+        pass
+    return render_template('/store/admin_passforgot.html')
 

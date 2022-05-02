@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, redirect, flash, session, request
+import random
 from conexao_mysql import *
 
 
@@ -93,8 +94,6 @@ class ModelUser:
 
     def AdminUpdatePass(self):
         if request.method == 'POST':
-            title = 'Change Password'
-
             amail = request.form['amail']
             apassword = request.form['apassword']
 
@@ -118,3 +117,14 @@ class ModelUser:
                         flash('Password and Confirm Password Dont Match...!!!!', 'danger')
                 else:
                     flash("Invalid Current Password!", "danger")
+
+
+    def gerar_codigo_verificacao(self):
+        digits = '0123456789'
+        qnt = 6
+        qntInt = int(qnt)
+        length = qntInt
+        all = digits
+        id = "".join(random.sample(all, length))
+        return id
+
