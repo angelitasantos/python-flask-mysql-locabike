@@ -23,3 +23,20 @@ $(function () {
     }
 
 })
+
+
+$(function () {
+
+    var message = document.querySelector("#body-message");
+    message.addEventListener("input", updateMessage);
+
+    function updateMessage() {
+        var post = document.querySelector("#body-message");
+
+        var characters = post.value.length;
+
+        var count = document.querySelector("#number-characters");
+        count.innerHTML = characters;
+    }
+
+})

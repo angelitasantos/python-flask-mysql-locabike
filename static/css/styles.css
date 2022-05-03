@@ -5,7 +5,14 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2%;
+}
+
+.text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .bold {
@@ -276,16 +283,23 @@
     padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.contact div p {
+.contact-data p {
     padding-bottom: 15px;
 }
 
 .section-contact {
+    min-width: 600px;
     padding: 30px;
+}
+
+.field p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: var(--green3);
 }
 
 
@@ -345,8 +359,6 @@ input[type="password"]:disabled {
 }
 
 .select {
-    display: inline-block;
-    max-width: 100%;
     position: relative;
     vertical-align: top;
 }
@@ -354,7 +366,7 @@ input[type="password"]:disabled {
 .select select {
     cursor: pointer;
     display: block;
-    width: 250px;
+    width: 100%;
     outline: none;
 }
 
