@@ -97,6 +97,13 @@
         padding: 15px;
     }
 
+    span .input-submit {
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+    }
+
+
 }
 
 @media (max-width: 350px) {

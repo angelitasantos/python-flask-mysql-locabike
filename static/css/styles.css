@@ -389,8 +389,8 @@ input[type="password"]:disabled {
     border-color: var(--green2);
     border-radius: 4px;
     color: var(--green7);
-    font-size: 1em;
-    padding: calc(0.6em - 1px);
+    font-size: 0.8em;
+    padding: calc(0.5em - 1px);
 }
 
 .input-submit:hover {

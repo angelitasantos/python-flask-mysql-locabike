@@ -4,9 +4,9 @@
 <section class="section-admin">
     <div class="content">
         <div id="login">
-            <h2 class="title"><i class="fa fa-user"> {{ title }}</i></h2>
+            <h3 class="title"><i class="fa fa-user"> {{ title }}</i></h3>
             <br>
-            <form method="post" action="">
+            <form method="POST" action="">
 
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -18,19 +18,18 @@
 
                 <div>
                     <label class="label">Username</label>
-                    <input type="email" name="amail" class="input" placeholder="email" required="required" />
+                    <input type="email" name="amail" class="input" placeholder="email" required />
                 </div>
                 <div>
                     <label class="label">Password</label>
-                    <input type="password" name="apassword" class="input" placeholder="password" required="required" />
+                    <input type="password" name="apassword" class="input" placeholder="password" required />
                 </div>
-                <div class="center">
+                <div class="text-center">
                     <input type="submit" name="alogin" class="input-submit" value="Sign In" />
                 </div>
-                <br><br>
-                <div class="center">
-                    <div>Forgot Your Password? <a href="{{ url_for('admin_passforgot') }}" class="input-submit">Click
-                            Here</a></div>
+                <div class="text-center">
+                    <div>Forgot Your Password? <span><a href="{{ url_for('admin_passforgot') }}"
+                                class="input-submit">Click Here</a></span></div>
                 </div>
             </form>
         </div>
