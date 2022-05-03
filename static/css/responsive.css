@@ -59,6 +59,14 @@
         margin-left: 10px;
     }
 
+    .center {
+        padding: 0 0;
+    }
+
+    .about {
+        padding: 50px 0;
+    }
+
     .img-about {
         width: 192px;
         height: 137px;

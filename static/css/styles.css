@@ -146,6 +146,10 @@
     background-repeat: no-repeat;
 }
 
+.home {
+    padding-bottom: 10px;
+}
+
 .banner-container {
     margin: 0;
     width: 0 auto;
