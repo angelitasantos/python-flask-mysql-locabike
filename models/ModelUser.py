@@ -29,7 +29,6 @@ class ModelUser:
                         session['stores'] = res['stores']
                         session['admins'] = res['admins']
                         session['aid'] = res['aid']
-                        return redirect(url_for('home'))
                     else:
                         flash("Invalid Username or Password...!!!", "danger")
                 else:
@@ -52,7 +51,7 @@ class ModelUser:
             SET aname = %s, sitedata = %s, companies = %s, stores = %s, admins = %s
             WHERE aid = %s''',[name, sitedata, companies, stores, admins, aid])
             mysql.connection.commit()
-            flash("Admin Profile Updated Successfully!", "success")
+            flash("Admin Profile Updated Successfully...!!!", "success")
 
 
     def AdminRegister(self):

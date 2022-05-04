@@ -26,23 +26,15 @@ def logout():
 def admin_profile(id):
     title = 'Admin Profile'
     try:
-        if session['amail'] != '':
+        if session['amail'] != '' and session['admins'] != '':
             cursor = mysql.connection.cursor()
             query = 'SELECT * FROM admins WHERE aid = %s'
             cursor.execute(query,[id])
             data = cursor.fetchone()
             cursor.close()
             count = cursor.rowcount
-            if count == 0:
-                flash('Users Not Found...!!!!', 'danger')
+            if count != 0:
                 return render_template('/store/admin_profile.html', res = data, title = title)
-            else:
-                return render_template('/store/admin_profile.html', res = data, title = title)
-    except Exception as e:
-        print(e)
-    try:
-        if session['umail'] != '':
-            return render_template('/pages/about.html', title = 'About')
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -87,10 +79,22 @@ def admin_list():
 
 @app.route('/delete_admins/<string:id>', methods = ['GET', 'POST'])
 def delete_admins(id):
-    cursor = mysql.connection.cursor()
-    cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
-    mysql.connection.commit()
-    flash('Admin Deleted Successfully...!!!', 'danger')
+    try:
+        cursor = mysql.connection.cursor()
+        query = 'SELECT * FROM admins'
+        cursor.execute(query)
+        data = cursor.fetchall()
+        cursor.close()
+        count = cursor.rowcount
+        if count == 1:
+            flash('Admin Cant Be Deleted...!!!!', 'danger')
+        else:
+            cursor = mysql.connection.cursor()
+            cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
+            mysql.connection.commit()
+            flash('Admin Deleted Successfully...!!!', 'danger')
+    except Exception as e:
+        print(e)
     return redirect(url_for('admin_list'))
 
 

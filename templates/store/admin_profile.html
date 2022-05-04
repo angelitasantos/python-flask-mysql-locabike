@@ -4,9 +4,9 @@
 <section class="section-admin">
     <div class="content">
         <div id="login">
-            <h2 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h2>
+            <h3 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h3>
             <br>
-            <form method="post" action="/update_admin">
+            <form method="POST" action="/update_admin">
 
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -18,7 +18,7 @@
 
                 <div>
                     <label class="label">Nome</label>
-                    <input type="text" name="aname" class="input" value="{{ res.aname }}">
+                    <input type="text" name="aname" class="input" value="{{ res.aname }}" required>
                 </div>
                 <div>
                     <input type="hidden" name="aid" value="{{ res.aid }}">
@@ -28,8 +28,7 @@
                     <input type="email" name="amail" disabled class="input" value="{{ res.amail }}">
                 </div>
                 <div>
-                    <label class="label">Password</label>
-                    <input type="password" name="apassword" disabled class="input" value="{{ res.apassword }}">
+                    <input type="hidden" name="apassword" disabled class="input" value="{{ res.apassword }}">
                 </div>
                 <div class="flex-div">
                     <div class="mright5">
@@ -49,11 +48,16 @@
                         <input type="text" name="admins" class="input" value="{{ res.admins }}">
                     </div>
                 </div>
-                <div class="center">
-                    <input type="submit" class="input-submit" value="Update Admin Profile">
+                <div class="text-center">
+                    <input type="submit" class="input-submit" value="Update Admin Profile"
+                        onclick="return confirm('Are you sure to edit?')">
                 </div>
-                <div>
+                <div class="text-right">
                     <sub>* 0 = Não Habilitado - 1 = Habilitado</sub>
+                </div>
+                <div class="text-center">
+                    <div>Back View Admins? <span><a href="{{ url_for('admin_list') }}" class="input-submit">Click
+                                Here</a></span></div>
                 </div>
             </form>
         </div>
