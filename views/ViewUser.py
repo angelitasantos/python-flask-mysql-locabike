@@ -97,7 +97,7 @@ def delete_admins(id):
     cursor = mysql.connection.cursor()
     cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
     mysql.connection.commit()
-    flash('Admin Deleted Successfully', 'danger')
+    flash('Admin Deleted Successfully!!!', 'danger')
     return redirect(url_for('admin_list'))
 
 

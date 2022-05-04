@@ -77,6 +77,11 @@
         height: 183px;
     }
 
+    .table-content {
+        position: absolute;
+        padding-right: 20px;
+    }
+
 }
 
 @media (max-width: 600px) {

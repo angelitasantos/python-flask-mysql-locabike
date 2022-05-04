@@ -319,13 +319,6 @@
 
 /* ########################################################### */
 
-button,
-input,
-select,
-textarea {
-    margin: 0;
-}
-
 .field:not(:last-child) {
     margin-bottom: 0.75em;
 }
@@ -350,12 +343,6 @@ textarea {
     color: var(--green1);
     font-size: 1em;
     padding: calc(0.6em - 1px);
-}
-
-input[type="email"]:disabled,
-input[type="password"]:disabled {
-    background-color: var(--green7);
-    color: var(--green1);
 }
 
 .input,
@@ -442,10 +429,6 @@ input[type="password"]:disabled {
     position: relative;
 }
 
-form div {
-    margin-bottom: 15px;
-}
-
 #register,
 #login {
     top: 0px;
@@ -467,4 +450,63 @@ form div {
     min-height: 600px;
     margin: 30px 20px;
     padding: 70px 0;
+}
+
+
+/* ########################################################### */
+
+.alert {
+    position: relative;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+.alert-danger {
+    color: var(--red2);
+    background-color: var(--red3);
+    border-color: var(--red1);
+}
+
+.alert-success {
+    color: var(--green1);
+    background-color: var(--green7);
+    border-color: var(--green1);
+}
+
+
+/* ########################################################### */
+
+.table {
+    width: 100%;
+    margin-bottom: 1em;
+    vertical-align: top;
+}
+
+.table> :not(caption)>*>* {
+    padding: 0.5rem 0.5rem;
+    border-bottom-width: 1px;
+}
+
+.thead {
+    background-color: var(--green2);
+    color: var(--green7);
+    font-size: 0.8em;
+    vertical-align: bottom;
+}
+
+.tbody {
+    vertical-align: inherit;
+    font-size: 0.8em;
+}
+
+.table-hover>tbody>tr:hover>* {
+    background-color: var(--green7);
+    color: var(--green1);
+}
+
+.table> :not(:first-child) {
+    border-top: 2px solid var(--green4);
 }
