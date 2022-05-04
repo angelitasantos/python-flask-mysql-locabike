@@ -31,9 +31,9 @@ class ModelUser:
                         session['aid'] = res['aid']
                         return redirect(url_for('home'))
                     else:
-                        flash("Invalid Username or Password!", "danger")
+                        flash("Invalid Username or Password...!!!", "danger")
                 else:
-                    flash("Username Not Found!", "danger")
+                    flash("Username Not Found...!!!", "danger")
             except Exception as e:
                 print(e)
 
@@ -69,7 +69,6 @@ class ModelUser:
             admins = request.form['admins']
 
             try:
-                title = 'Admin Profile'
                 cursor = mysql.connection.cursor()
                 cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
                 cursor.fetchone()
@@ -80,14 +79,11 @@ class ModelUser:
                     cursor.execute('''INSERT INTO admins (aname, apassword, amail, sitedata, companies, stores, admins) 
                     VALUES (%s, %s, %s, %s, %s, %s, %s)''',[aname, password_hash, amail, sitedata, companies, stores, admins])
                     mysql.connection.commit()
-                    flash('Admin Created Successfully', 'success')
-                    return render_template('/store/admin_profile.html', title = title)
+                    flash('Admin Created Successfully...!!!', 'success')
                 elif count == 0 and apassword != aconfirmpassword:
-                    flash('Password and Confirm Password Dont Match...!!!!', 'danger')
-                    return render_template('/store/admin_profile.html', title = title)
+                    flash('Password and Confirm Password Dont Match...!!!', 'danger')
                 else:
-                    flash('Admin Found...!!!!', 'danger')
-                    return render_template('/store/admin_profile.html', title = title)
+                    flash('Admin Found...!!!', 'danger')
             except Exception as e:
                 print(e)
 

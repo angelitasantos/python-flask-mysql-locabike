@@ -63,11 +63,6 @@ def admin_register():
             return render_template('/store/admin_register.html', title = title)
     except Exception as e:
         print(e)
-    try:
-        if session['umail'] != '':
-            return render_template('/pages/about.html', title = 'About')
-    except Exception as e:
-        print(e)
     return render_template('/pages/home.html', title = 'Home')
 
 
@@ -85,11 +80,9 @@ def admin_list():
             if count == 0:
                 flash('Admins Not Found...!!!!', 'danger')
             return render_template('/store/admin_list.html', res = data, title = title)
-        else:
-            redirect(url_for('home'))
     except Exception as e:
         print(e)
-    return render_template('/pages/home.html')
+    return render_template('/pages/home.html', title = 'Home')
 
 
 @app.route('/delete_admins/<string:id>', methods = ['GET', 'POST'])
@@ -97,7 +90,7 @@ def delete_admins(id):
     cursor = mysql.connection.cursor()
     cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
     mysql.connection.commit()
-    flash('Admin Deleted Successfully!!!', 'danger')
+    flash('Admin Deleted Successfully...!!!', 'danger')
     return redirect(url_for('admin_list'))
 
 
