@@ -107,11 +107,11 @@ class ModelUser:
                         SET apassword = %s
                         WHERE amail = %s''',[newpassword_hash, amail])
                         mysql.connection.commit()
-
+                        flash("Password Updated Successfully...!!!", "success")
                     elif anewpassword != aconfirmnewpassword:
                         flash('Password and Confirm Password Dont Match...!!!!', 'danger')
                 else:
-                    flash("Invalid Current Password!", "danger")
+                    flash("Invalid Current Password...!!!", "danger")
 
 
     def gerar_codigo_verificacao(self):

@@ -98,8 +98,8 @@ def delete_admins(id):
     return redirect(url_for('admin_list'))
 
 
-@app.route('/admin_passchange')
-def admin_passchange():
+@app.route('/admin_pass_change')
+def admin_pass_change():
     title = 'Change Password'
     try:
         if session['amail'] != '':
@@ -109,12 +109,7 @@ def admin_passchange():
             cursor.execute(query,[id])
             data = cursor.fetchone()
             cursor.close()
-            return render_template('/store/admin_passchange.html', res = data, title = title)
-    except Exception as e:
-        print(e)
-    try:
-        if session['umail'] != '':
-            return render_template('/pages/about.html', title = 'About')
+            return render_template('/store/admin_pass_change.html', res = data, title = title)
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -123,9 +118,7 @@ def admin_passchange():
 @app.route('/update_password', methods = ['GET', 'POST'])
 def update_password():
     ModelUser.AdminUpdatePass(self)
-    session.clear()
-    flash("Password Updated Successfully! Please, Login Again!", "success")
-    return redirect(url_for('admin'))
+    return redirect(url_for('admin_pass_change'))
 
 
 @app.route('/admin_passforgot')
