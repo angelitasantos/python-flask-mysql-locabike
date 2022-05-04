@@ -13,7 +13,7 @@
 ### Admin
 
 - [Sign in](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin.html)
-- [Sign out](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/ViewUser.py)
+- [Sign out](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/views/ViewUser.py)
 - [Forgot Password](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_pass_forgot.html)
 - [Redefine Password](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_pass_redefine.html)
 
@@ -21,6 +21,6 @@ Apenas logado
 - [Sign up](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_register.html)
 - [View Admins](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_list.html)
 - [Edit Profile](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_profile.html)
-- [Delete Profile](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/ViewUser.py)
+- [Delete Profile](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/views/ViewUser.py)
 - [Change Password](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_pass_change.html)
 
