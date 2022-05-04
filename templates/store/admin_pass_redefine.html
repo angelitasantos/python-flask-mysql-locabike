@@ -4,9 +4,9 @@
 <section class="section-admin">
     <div class="content">
         <div id="login">
-            <h2 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h2>
+            <h3 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h3>
             <br>
-            <form method="post" action="/redefine_password">
+            <form method="POST" action="/redefine_password">
 
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -24,27 +24,26 @@
                     <label class="label">Verification Code</label>
                     <input type="text" name="acode" class="input" placeholder="verification code" required>
                 </div>
-                <div>
-                    <label class="label">New Password</label>
-                    <input type="password" name="anewpassword" class="input" placeholder="new password" required>
+                <div class="flex-div">
+                    <div class="mright5">
+                        <label class="label">New Password</label>
+                        <input type="password" name="anewpassword" class="input" placeholder="new password" required>
+                    </div>
+                    <div>
+                        <label class="label">Confirm New Password</label>
+                        <input type="password" name="aconfirmnewpassword" class="input"
+                            placeholder="confirm new password" required>
+                    </div>
                 </div>
-                <div>
-                    <label class="label">Confirm New Password</label>
-                    <input type="password" name="aconfirmnewpassword" class="input" placeholder="confirm new password"
-                        required>
-                </div>
-                <div class="center">
+                <div class="text-center">
                     <input type="submit" class="input-submit" value="{{ title }}">
                 </div>
-                <br><br>
-                <div class="center">
-                    <div>Forgot Password? <a href="{{ url_for('admin_passforgot') }}" class="input-submit">Click
-                            Here</a></div>
+                <div class="text-center">
+                    <div>Dont have the verification code? <span><a href="{{ url_for('admin_pass_forgot') }}"
+                                class="input-edit">Click Here</a></span></div>
                 </div>
-                <br>
-                <div class="center">
-                    <div>Login? <a href="{{ url_for('admin') }}" class="input-submit">Click
-                            Here</a></div>
+                <div class="text-center">
+                    <div>Login? <a href="{{ url_for('admin') }}" class="input-submit">Click Here</a></div>
                 </div>
             </form>
         </div>

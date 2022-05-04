@@ -144,10 +144,10 @@ class ModelUser:
                         SET apassword = %s
                         WHERE amail = %s''',[newpassword_hash, amail])
                         mysql.connection.commit()
-                        flash('Password Redefined Successfully!', 'success')
+                        flash('Password Redefined Successfully...!!!', 'success')
                     elif anewpassword != aconfirmnewpassword:
-                        flash('New Password and Confirm New Password Dont Match...!!!!', 'danger')
+                        flash('New Password and Confirm New Password Dont Match...!!!', 'danger')
             else:
-                flash('Verification Code Dont Correct...!!!!', 'danger')
+                flash('Username or Verification Code Dont Correct...!!!', 'danger')
 
     

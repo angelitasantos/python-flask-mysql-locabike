@@ -121,25 +121,21 @@ def update_password():
     return redirect(url_for('admin_pass_change'))
 
 
-@app.route('/admin_passforgot')
-def admin_passforgot():
+@app.route('/admin_pass_forgot')
+def admin_pass_forgot():
     title = 'Forgot Password'
     try:
-        if session['amail'] != '':
-            return render_template('/pages/about.html', title = 'About')
+        if session['amail'] != '' or session['umail'] != '':
+            return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
-    try:
-        if session['umail'] != '':
-            return render_template('/pages/about.html', title = 'About')
-    except Exception as e:
-        print(e)
-    return render_template('/store/admin_passforgot.html', title = title)
+    return render_template('/store/admin_pass_forgot.html', title = title)
     
 
 @app.route('/send_message_passforgot', methods = ['GET', 'POST'])
 def send_message_passforgot():
-    title = 'Forgot Password'
+    forgot = 'Forgot Password'
+    redefine = 'Redefine Password'
     try:
         if request.method == 'POST':
             code = ModelUser.gerar_codigo_verificacao(self)
@@ -149,10 +145,6 @@ def send_message_passforgot():
             {code}
             Link Redefine Password
             '''
-
-            message = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [email])
-            message.body = msg
-            mail.send(message)
 
             try:
                 cursor = mysql.connection.cursor()
@@ -166,31 +158,36 @@ def send_message_passforgot():
                     SET acode = %s
                     WHERE amail = %s''',[code, email])
                     mysql.connection.commit()
-                    flash('Mail Sent Successfully!', 'success')
-                    return render_template('/store/admin_passforgot.html', title = title)
+
+                    message = Message(subject, sender = app.config.get('MAIL_USERNAME'), recipients = [email])
+                    message.body = msg
+                    mail.send(message)
+                    
+                    flash('Mail Sent Successfully...!!!', 'success')
+                    return render_template('/store/admin_pass_redefine.html', title = redefine)
                 else:
-                    flash('Admin Not Found...!!!!', 'danger')
-                    return render_template('/store/admin_passforgot.html', title = title)
+                    flash('Admin Not Found...!!!', 'danger')
+                    return render_template('/store/admin_pass_forgot.html', title = forgot)
             except Exception as e:
                 print(e)
     except:
-        flash('Mail Dont Sent', 'danger')
+        flash('Mail Dont Sent...!!!', 'danger')
         pass
-    return render_template('/store/admin_passforgot.html')
+    return render_template('/store/admin_pass_forgot.html')
 
 
-@app.route('/admin_passredefine')
-def admin_passredefine():
+@app.route('/admin_pass_redefine')
+def admin_pass_redefine():
     title = 'Redefine Password'
     try:
         if session['amail'] != '' or session['umail'] != '':
-            return render_template('/pages/about.html', title = 'About')
+            return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
-    return render_template('/store/admin_passredefine.html', title = title)
+    return render_template('/store/admin_pass_redefine.html', title = title)
 
 
 @app.route('/redefine_password', methods = ['GET', 'POST'])
 def redefine_password():
     ModelUser.AdminRedefinePass(self)
-    return redirect(url_for('admin_passredefine'))
+    return redirect(url_for('admin_pass_redefine'))
