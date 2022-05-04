@@ -23,3 +23,29 @@ $(function () {
     }
 
 })
+
+
+$(function () {
+
+    var message = document.querySelector('#body-message');
+    message.addEventListener('input', updateMessage);
+
+    function updateMessage() {
+        var post = document.querySelector('#body-message');
+
+        var characters = post.value.length;
+
+        var count = document.querySelector('#number-characters');
+        count.innerHTML = characters;
+    }
+
+})
+
+
+const MENU_BTN = document.querySelector(".menu-btn");
+const NAVIGATION = document.querySelector(".navbar-links");
+
+MENU_BTN.addEventListener("click", () => {
+    MENU_BTN.classList.toggle("active");
+    NAVIGATION.classList.toggle("active");
+});

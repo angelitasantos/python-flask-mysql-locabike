@@ -1,0 +1,45 @@
+<div>
+    <h4 class="title">Entre em contato</h4>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <section class="section-contact">
+
+        <form action="{{ url_for('send_message') }}" method="POST">
+            <div class="field">
+                <label class="label">Nome</label>
+                <input name="name" class="input" type="text" maxlength="20" placeholder="Digite seu nome">
+            </div>
+            <div class="field">
+                <label class="label">Email *</label>
+                <input name="mail" class="input" type="email" maxlength="50" placeholder="Digite seu email" required>
+            </div>
+            <div class="field">
+                <label class="label">Assunto</label>
+                <div class="select">
+                    <select name="subject">
+                        <option>Reportar erro</option>
+                        <option>Anúncios</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Mensagem *</label>
+                <textarea name="message" class="textarea" id="body-message" rows="5" required
+                    placeholder="Digite sua mensagem" maxlength="500"></textarea>
+                <p class="text-right"><span id="number-characters">0</span> / 500</p>
+            </div>
+            <div class="text-center">
+                <input type="submit" class="input-submit" value="Enviar Mensagem"></input>
+            </div>
+        </form>
+
+    </section>
+</div>
