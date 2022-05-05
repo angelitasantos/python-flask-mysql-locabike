@@ -1,0 +1,69 @@
+{% extends 'base_store.html' %}
+{% block container %}
+
+<section class="section-list">
+    <div>
+        <div>
+            <h3 class="title"><i class="fa fa-users"> {{ title }}</i></h3>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="flex-between">
+                <div>
+                    <p>Admin : {{ session["aname"] }}</p>
+                </div>
+                <div><a href="" class="input-submit">Add New Company</a></div>
+            </div>
+
+            <div class="search-table">
+                <div class="search-box">
+                    <input type="text" name="search_text" id="search_text" class="input"
+                        placeholder="Search Fields: Name, Mail, Phone1">
+                </div>
+                <div id="result"></div>
+            </div>
+            <br>
+
+            <div class="table-content">
+                <table class="table table-hover">
+                    <thead class="thead">
+                        <tr class="text-center">
+                            <th class="bold">S.No</th>
+                            <th class="bold">Name</th>
+                            <th class="bold">Mail</th>
+                            <th class="bold">Phone1</th>
+                            <th class="bold">Address</th>
+                            <th class="bold">City</th>
+                            <th class="bold">State</th>
+                            <th class="bold">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        {% for row in response %}
+                        <tr class="text-center">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ row.nome }}</td>
+                            <td>{{ row.email }}</td>
+                            <td>{{ row.telefone1 }}</td>
+                            <td>{{ row.endereco }}</td>
+                            <td>{{ row.cidade }}</td>
+                            <td>{{ row.uf }}</td>
+                            <td><a href="" class="input-edit" onclick="return confirm('Are you sure to edit?')"><i
+                                        class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

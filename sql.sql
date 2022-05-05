@@ -14,3 +14,27 @@ CREATE TABLE IF NOT EXISTS admins (
 );
 
 SELECT * FROM admins;
+
+CREATE TABLE IF NOT EXISTS companies (
+    id SERIAL NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    razaosocial VARCHAR(150),
+    tipo CHAR(10) NOT NULL DEFAULT 'JURIDICA',
+    cnpj CHAR(20),
+    inscest CHAR(20),
+    cpf CHAR(11),
+    rg CHAR(11),
+    endereco VARCHAR(100),
+    numero CHAR(10),
+    complemento CHAR(20),
+    bairro VARCHAR(50),
+    cidade VARCHAR(50),
+    uf CHAR(2),
+    cep CHAR(8),
+    telefone1 CHAR(15),
+    telefone2 CHAR(15),
+    email VARCHAR(50),
+    PRIMARY KEY (id)
+);
+
+SELECT * FROM companies;
