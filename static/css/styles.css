@@ -521,3 +521,19 @@
 .table> :not(:first-child) {
     border-top: 2px solid var(--green4);
 }
+
+
+/* ########################################################### */
+
+.section-company {
+    display: flex;
+    justify-content: center;
+    margin: 120px 0 40px 0;
+    padding: 20px;
+}
+
+.content-company {
+    width: 900px;
+    margin: 0 10px;
+    position: relative;
+}
