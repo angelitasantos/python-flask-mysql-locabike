@@ -1,10 +1,11 @@
-<div class="sidebar">
+<div class="sidebar" onload="relogio();">
     <div class="sidebar-menu">
         <center class="profile">
             <img src="/static/img/logo.png" alt="Avatar" class="avatar">
             <div class="avatar-name">
                 <p>{{ session["aname"] }}</p>
             </div>
+            <div id="data-local"></div>
         </center>
 
         <li class="sidebar-menu-item">

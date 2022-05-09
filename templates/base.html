@@ -2,15 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/root.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/responsive.css') }}">
-    <script src="https://kit.fontawesome.com/bfe7a3e22e.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+    {% include 'layout/head_property.html' %}
+    {% include 'layout/static_css.html' %}
 </head>
 
 <body>
@@ -22,7 +15,7 @@
 
     {% include 'layout/footer.html' %}
 
-    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+    {% include 'layout/static_js.html' %}
 </body>
 
 </html>

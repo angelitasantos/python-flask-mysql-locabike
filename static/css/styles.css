@@ -622,7 +622,7 @@
     background: var(--green2);
     position: fixed;
     top: 60px;
-    width: 250px;
+    width: 230px;
     height: calc(100% - 9%);
     transition: 0.3s;
     transition-property: width;
@@ -646,7 +646,8 @@
     background: var(--light);
 }
 
-.wrapper .sidebar .sidebar-menu .profile .avatar-name {
+.wrapper .sidebar .sidebar-menu .profile .avatar-name,
+.wrapper .sidebar .sidebar-menu .profile #data-local {
     color: var(--green6);
     font-weight: 700;
     margin-top: 10px;
@@ -714,9 +715,9 @@
 /* ########################################################### */
 
 .wrapper .main-container {
-    width: calc(100% - 250px);
+    width: calc(100% - 230px);
     margin-top: 60px;
-    margin-left: 250px;
+    margin-left: 230px;
     height: 100vh;
     transition: 0.3s;
 }
@@ -728,7 +729,8 @@
 
 .wrapper.collapse .sidebar .profile img,
 .wrapper.collapse .sidebar .profile p,
-.wrapper.collapse .sidebar a span {
+.wrapper.collapse .sidebar a span,
+.wrapper.collapse .sidebar #data-local {
     display: none;
 }
 

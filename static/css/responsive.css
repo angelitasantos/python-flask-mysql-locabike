@@ -18,7 +18,8 @@
 
     .wrapper .sidebar .profile img,
     .wrapper .sidebar .profile p,
-    .wrapper .sidebar a span {
+    .wrapper .sidebar a span,
+    .wrapper .sidebar #data-local {
         display: none;
     }
 
