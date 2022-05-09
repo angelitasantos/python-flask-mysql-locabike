@@ -9,7 +9,12 @@ def admin():
     title = 'Admin'
     ModelUser.AdminLogin(self)
     try:
-        if session['amail'] != '' or session['umail'] != '':
+        if session['amail'] != '':
+            return render_template('/layout/store.html', title = 'Store')
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)

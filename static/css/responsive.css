@@ -1,6 +1,39 @@
 @import url(./root.css);
 
 
+@media (max-width: 900px) {
+    .wrapper .main-container {
+        width: calc(100% - 70px);
+        margin-left: 70px;
+    }
+
+    .sidebar-btn {
+        display: none;
+    }
+
+    .wrapper .sidebar {
+        width: 70px;
+        padding-top: 50px;
+    }
+
+    .wrapper .sidebar .profile img,
+    .wrapper .sidebar .profile p,
+    .wrapper .sidebar a span {
+        display: none;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .store-menu-btn {
+        font-size: 1.5em;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .sub-menu i {
+        font-size: 1.2em;
+        padding-left: 3px;
+    }
+
+}
+
+
 @media (max-width: 700px) {
     .navbar-links {
         display: none;
@@ -88,6 +121,7 @@
 
 }
 
+
 @media (max-width: 600px) {
     .contact-data {
         margin-bottom: 35px;
@@ -112,8 +146,8 @@
         justify-content: center;
     }
 
-
 }
+
 
 @media (max-width: 350px) {
     .navbar-logo {
@@ -139,6 +173,49 @@
 
     .select select {
         width: 230px;
+    }
+
+    .wrapper .header-navbar .header-navbar-menu {
+        padding: 0 10px;
+    }
+
+    .wrapper .header-navbar .header-navbar-menu .header-navbar-title {
+        font-size: 1.2em;
+    }
+
+    .wrapper .header-navbar .header-navbar-menu ul li a {
+        margin: 0 5px;
+        font-size: 1em;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+
+    .wrapper .main-container {
+        width: calc(100% - 50px);
+        margin-left: 50px;
+    }
+
+    .wrapper .sidebar {
+        width: 50px;
+        padding-top: 20px;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .store-menu-btn {
+        padding: 10px 15px;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .store-menu-btn {
+        font-size: 1.2em;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .sub-menu i {
+        font-size: 1em;
+        padding-left: 1px;
+    }
+
+    .wrapper .sidebar .sidebar-menu .sidebar-menu-item .sub-menu a {
+        padding: 10px 15px;
     }
 
 }

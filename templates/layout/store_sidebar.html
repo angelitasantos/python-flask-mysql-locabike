@@ -1,0 +1,59 @@
+<div class="sidebar">
+    <div class="sidebar-menu">
+        <center class="profile">
+            <img src="/static/img/logo.png" alt="Avatar" class="avatar">
+            <div class="avatar-name">
+                <p>{{ session["aname"] }}</p>
+            </div>
+        </center>
+
+        <li class="sidebar-menu-item">
+            <a href="" class="store-menu-btn"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="sidebar-menu-item" id="manager">
+            <a href="#manager" class="store-menu-btn">
+                <i class="fas fa-home"></i><span>Manager<i class="fas fa-chevron-down drop-down"></i></span>
+            </a>
+            <div class="sub-menu">
+                <a href="#manager"><i class="fas fa-coins"></i><span>Products</span></a>
+                <a href="#manager"><i class="fas fa-address-card"></i><span>Clients</span></a>
+                <a href="#manager"><i class="fas fa-address-card"></i><span>Providers</span></a>
+                <a href="#manager"><i class="fas fa-file-invoice"></i><span>Sales</span></a>
+                <a href="#manager"><i class="fas fa-box-open"></i><span>Shopping</span></a>
+                <a href="#manager"><i class="fas fa-dollar-sign"></i><span>Finance</span></a>
+            </div>
+        </li>
+
+        <li class="sidebar-menu-item" id="companies">
+            <a href="#companies" class="store-menu-btn">
+                <i class="fas fa-industry"></i><span>Companies<i class="fas fa-chevron-down drop-down"></i></span>
+            </a>
+            <div class="sub-menu">
+                <a href="{{ url_for('company_list') }}"><i class="fas fa-building"></i><span>Company List</span></a>
+                <a href="{{ url_for('company_register') }}"><i class="fas fa-briefcase"></i><span>Company
+                        Register</span></a>
+                <a href="#companies"><i class="fas fa-table"></i><span>Store List</span></a>
+                <a href="#companies"><i class="fas fa-paste"></i><span>Store Register</span></a>
+            </div>
+        </li>
+
+        <li class="sidebar-menu-item" id="settings">
+            <a href="#settings" class="store-menu-btn">
+                <i class="fas fa-cog"></i><span>Settings<i class="fas fa-chevron-down drop-down"></i></span>
+            </a>
+            <div class="sub-menu">
+                <a href="{{ url_for('admin_list') }}"><i class="fas fa-users"></i><span>Admin List</span></a>
+                <a href="{{ url_for('admin_register') }}"><i class="fas fa-address-card"></i><span>Admin
+                        Register</span></a>
+                <a href="{{ url_for('admin_pass_change') }}"><i class="fas fa-user-lock"></i><span>Admin
+                        Password</span></a>
+            </div>
+        </li>
+
+        <li class="sidebar-menu-item">
+            <a href="" class="store-menu-btn"><i class="fas fa-info-circle"></i><span>About</span></a>
+        </li>
+
+    </div>
+</div>

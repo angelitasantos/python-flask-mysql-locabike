@@ -24,3 +24,8 @@ Apenas logado
 - [Delete Profile](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/views/ViewUser.py)
 - [Change Password](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin_pass_change.html)
 
+
+
+![Contact Page](/static/img/images/readme-img001.png)
+
+![Store Page](/static/img/images/readme-img002.png)

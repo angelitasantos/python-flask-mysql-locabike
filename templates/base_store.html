@@ -16,12 +16,19 @@
 
 <body>
 
-    {% include 'layout/header.html' %}
+    <div class="wrapper">
+        {% include 'layout/store_navbar.html' %}
+        {% include 'layout/store_sidebar.html' %}
 
-    {% block container %}
-    {% endblock %}
+        <div class="main-container">
+            {% block container %}
+            {% endblock %}
+        </div>
+    </div>
 
     <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/search.js') }}"></script>
 </body>
 
 </html>
