@@ -31,7 +31,7 @@ def logout():
 def admin_profile(id):
     title = 'Admin Profile'
     try:
-        if session['amail'] != '' and session['admins'] != '':
+        if session['amail'] != '' and session['admins'] == 1:
             cursor = mysql.connection.cursor()
             query = 'SELECT * FROM admins WHERE aid = %s'
             cursor.execute(query,[id])
@@ -40,6 +40,9 @@ def admin_profile(id):
             count = cursor.rowcount
             if count != 0:
                 return render_template('/store/admin_profile.html', res = data, title = title)
+        elif session['amail'] != '' and session['admins'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -58,6 +61,9 @@ def admin_register():
     try:
         if session['amail'] != '' and session['admins'] == 1:
             return render_template('/store/admin_register.html', title = title)
+        elif session['amail'] != '' and session['admins'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -77,6 +83,9 @@ def admin_list():
             if count == 0:
                 flash('Admins Not Found...!!!!', 'danger')
             return render_template('/store/admin_list.html', res = data, title = title)
+        elif session['amail'] != '' and session['admins'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -85,19 +94,23 @@ def admin_list():
 @app.route('/delete_admins/<string:id>', methods = ['GET', 'POST'])
 def delete_admins(id):
     try:
-        cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM admins'
-        cursor.execute(query)
-        data = cursor.fetchall()
-        cursor.close()
-        count = cursor.rowcount
-        if count == 1:
-            flash('Admin Cant Be Deleted...!!!!', 'danger')
-        else:
+        if session['amail'] != '' and session['admins'] == 1:
             cursor = mysql.connection.cursor()
-            cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
-            mysql.connection.commit()
-            flash('Admin Deleted Successfully...!!!', 'danger')
+            query = 'SELECT * FROM admins'
+            cursor.execute(query)
+            data = cursor.fetchall()
+            cursor.close()
+            count = cursor.rowcount
+            if count == 1:
+                flash('Admin Cant Be Deleted...!!!!', 'danger')
+            else:
+                cursor = mysql.connection.cursor()
+                cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
+                mysql.connection.commit()
+                flash('Admin Deleted Successfully...!!!', 'danger')
+        elif session['amail'] != '' and session['admins'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
     except Exception as e:
         print(e)
     return redirect(url_for('admin_list'))
@@ -130,7 +143,12 @@ def update_password():
 def admin_pass_forgot():
     title = 'Forgot Password'
     try:
-        if session['amail'] != '' or session['umail'] != '':
+        if session['amail'] != '':
+            return render_template('/layout/store.html', title = 'Store')
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
@@ -185,7 +203,12 @@ def send_message_passforgot():
 def admin_pass_redefine():
     title = 'Redefine Password'
     try:
-        if session['amail'] != '' or session['umail'] != '':
+        if session['amail'] != '':
+            return render_template('/layout/store.html', title = 'Store')
+    except Exception as e:
+        print(e)
+    try:
+        if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
