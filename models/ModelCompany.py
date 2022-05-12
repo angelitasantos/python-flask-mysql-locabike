@@ -10,32 +10,78 @@ class ModelCompany:
 
     def CompanyRegister(self):
         if request.method == 'POST':
-            aname = request.form['aname']
-            apassword = request.form['apassword']
-            aconfirmpassword = request.form['aconfirmpassword']
-            password_hash = bcrypt.generate_password_hash(apassword).decode('utf-8')
-
-            amail = request.form['amail']
-            sitedata = request.form['sitedata']
-            companies = request.form['companies']
-            stores = request.form['stores']
-            admins = request.form['admins']
+            nome = request.form['nome']
+            razaosocial = request.form['razaosocial']
+            tipo = request.form['tipo']
+            cnpj = request.form['cnpj']
+            inscest = request.form['inscest']
+            cpf = request.form['cpf']
+            rg = request.form['rg']
+            endereco = request.form['endereco']
+            numero = request.form['numero']
+            complemento = request.form['complemento']
+            
+            bairro = request.form['bairro']
+            cidade = request.form['cidade']
+            uf = request.form['uf']
+            cep = request.form['cep']
+            telefone1 = request.form['telefone1']
+            telefone2 = request.form['telefone2']
+            email = request.form['email']
 
             try:
                 cursor = mysql.connection.cursor()
-                cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
+                cursor.execute('SELECT * FROM companies WHERE email = %s', [email])
                 cursor.fetchone()
                 cursor.close()
                 count = cursor.rowcount
-                if count == 0 and apassword == aconfirmpassword:
+                if count == 0:
                     cursor = mysql.connection.cursor()
-                    cursor.execute('''INSERT INTO admins (aname, apassword, amail, sitedata, companies, stores, admins) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)''',[aname, password_hash, amail, sitedata, companies, stores, admins])
+                    cursor.execute('''INSERT INTO companies 
+                    (nome, razaosocial, tipo, cnpj, inscest, cpf, rg, endereco, numero, complemento,
+                    bairro, cidade, uf, cep, telefone1, telefone2, email) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+                    [nome, razaosocial, tipo, cnpj, inscest, cpf, rg, endereco, numero, complemento,
+                    bairro, cidade, uf, cep, telefone1, telefone2, email])
                     mysql.connection.commit()
-                    flash('Admin Created Successfully...!!!', 'success')
-                elif count == 0 and apassword != aconfirmpassword:
-                    flash('Password and Confirm Password Dont Match...!!!', 'danger')
+                    flash('Company Created Successfully...!!!', 'success')
                 else:
-                    flash('Admin Found...!!!', 'danger')
+                    flash('Company Found...!!!', 'danger')
             except Exception as e:
                 print(e)
+
+
+    def CompanyUpdate(self):
+        if request.method == 'POST':
+            nome = request.form['nome']
+            razaosocial = request.form['razaosocial']
+            tipo = request.form['tipo']
+            cnpj = request.form['cnpj']
+            inscest = request.form['inscest']
+            cpf = request.form['cpf']
+            rg = request.form['rg']
+            endereco = request.form['endereco']
+            numero = request.form['numero']
+            complemento = request.form['complemento']
+            
+            bairro = request.form['bairro']
+            cidade = request.form['cidade']
+            uf = request.form['uf']
+            cep = request.form['cep']
+            telefone1 = request.form['telefone1']
+            telefone2 = request.form['telefone2']
+            email = request.form['email']
+            id = request.form['id']
+            
+            cursor = mysql.connection.cursor()
+            cursor.execute('''UPDATE companies 
+            SET nome = %s, razaosocial = %s, tipo = %s, cnpj = %s, inscest = %s, cpf = %s, rg = %s,
+            endereco = %s, numero = %s, complemento = %s, bairro = %s, cidade = %s,
+            uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s
+            WHERE id = %s''',
+            [nome, razaosocial, tipo, cnpj, inscest, cpf, rg, endereco, numero, complemento,
+            bairro, cidade, uf, cep, telefone1, telefone2, email, id])
+            mysql.connection.commit()
+            flash("Company Updated Successfully...!!!", "success")
+
+

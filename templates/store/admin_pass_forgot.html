@@ -1,35 +1,37 @@
 {% extends 'base.html' %}
 {% block container %}
 
-<section class="section-admin">
-    <div class="content">
-        <div id="login">
-            <h3 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h3>
-            <br>
-            <form method="POST" action="{{ url_for('send_message_passforgot') }}">
+<div class="admin-base">
+    <section class="section-admin">
+        <div class="content">
+            <div id="login">
+                <h3 class="title"><i class="fa fa-user-lock"> {{ title }}</i></h3>
+                <br>
+                <form method="POST" action="{{ url_for('send_message_passforgot') }}">
 
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
 
-                <div>
-                    <label class="label">Username</label>
-                    <input type="email" name="amail" class="input" placeholder="username" required>
-                </div>
-                <div class="text-center">
-                    <input type="submit" class="input-submit" value="{{ title }}">
-                </div>
-                <div class="text-center">
-                    <div>Do have the verification code? <span><a href="{{ url_for('admin_pass_redefine') }}"
-                                class="input-edit">Click Here</a></span></div>
-                </div>
-            </form>
+                    <div>
+                        <label class="label">Username</label>
+                        <input type="email" name="amail" class="input" placeholder="username" required>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="input-submit" value="{{ title }}">
+                    </div>
+                    <div class="text-center">
+                        <div>Do have the verification code? <span><a href="{{ url_for('admin_pass_redefine') }}"
+                                    class="input-edit">Click Here</a></span></div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
 {% endblock %}

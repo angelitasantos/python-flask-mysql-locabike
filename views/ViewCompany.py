@@ -53,3 +53,29 @@ def company_register():
     return render_template('/pages/home.html', title = 'Home')
 
 
+
+@app.route('/company_edit/<string:id>')
+def company_edit(id):
+    title = 'Company Edit'
+    try:
+        if session['amail'] != '' and session['companies'] == 1:
+            cursor = mysql.connection.cursor()
+            query = 'SELECT * FROM companies WHERE id = %s'
+            cursor.execute(query,[id])
+            data = cursor.fetchone()
+            cursor.close()
+            count = cursor.rowcount
+            if count != 0:
+                return render_template('/store/company/company_edit.html', res = data, title = title)
+        elif session['amail'] != '' and session['companies'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
+    except Exception as e:
+        print(e)
+    return render_template('/pages/home.html', title = 'Home')
+
+
+@app.route('/update_company', methods = ['GET','POST'])
+def update_company():
+    ModelCompany.CompanyUpdate(self)
+    return redirect(url_for('company_list'))

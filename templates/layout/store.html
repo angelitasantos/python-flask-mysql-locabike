@@ -1,4 +1,14 @@
 {% extends 'base_store.html' %}
 {% block container %}
 
+<div class="admin-base">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
 {% endblock %}

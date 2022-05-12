@@ -5,7 +5,8 @@
         <ul>
             <li><a href=""><i class="fas fa-search"></i></a></li>
             <li><a href=""><i class="fas fa-bell"></i></a></li>
-            <li><a href="{{ url_for('logout') }}"><i class="fas fa-power-off"></i></a></li>
+            <li><a href="{{ url_for('logout') }}" onclick="return confirm('Are you sure to logout?')"><i
+                        class="fas fa-power-off"></i></a></li>
         </ul>
     </nav>
 </header>

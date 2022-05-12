@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS companies (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    PRIMARY KEY (id)
+    PRIMARY KEY (email)
 );
 
 SELECT * FROM companies;

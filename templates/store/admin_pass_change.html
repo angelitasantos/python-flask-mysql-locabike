@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_store.html' %}
 {% block container %}
 
 <section class="section-admin">
@@ -19,7 +19,6 @@
                 <div>
                     <p>Username : {{ session["amail"] }}</p>
                 </div>
-
                 <div>
                     <input type="hidden" name="amail" class="input" value="{{ session['amail'] }}">
                 </div>
@@ -41,12 +40,6 @@
                 <div class="text-center">
                     <input type="submit" class="input-submit" value="{{ title }}"
                         onclick="return confirm('Are you sure to edit?')">
-                </div>
-                <br>
-                <div class="text-center">
-                    <div>Logout? <span><a href="{{ url_for('logout') }}" class="input-submit"
-                                onclick="return confirm('Are you sure to logout?')">Click
-                                Here</a></span></div>
                 </div>
             </form>
         </div>
