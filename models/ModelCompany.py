@@ -49,3 +49,39 @@ class ModelCompany:
                     flash('Company Found...!!!', 'danger')
             except Exception as e:
                 print(e)
+
+
+    def CompanyUpdate(self):
+        if request.method == 'POST':
+            nome = request.form['nome']
+            razaosocial = request.form['razaosocial']
+            tipo = request.form['tipo']
+            cnpj = request.form['cnpj']
+            inscest = request.form['inscest']
+            cpf = request.form['cpf']
+            rg = request.form['rg']
+            endereco = request.form['endereco']
+            numero = request.form['numero']
+            complemento = request.form['complemento']
+            
+            bairro = request.form['bairro']
+            cidade = request.form['cidade']
+            uf = request.form['uf']
+            cep = request.form['cep']
+            telefone1 = request.form['telefone1']
+            telefone2 = request.form['telefone2']
+            email = request.form['email']
+            id = request.form['id']
+            
+            cursor = mysql.connection.cursor()
+            cursor.execute('''UPDATE companies 
+            SET nome = %s, razaosocial = %s, tipo = %s, cnpj = %s, inscest = %s, cpf = %s, rg = %s,
+            endereco = %s, numero = %s, complemento = %s, bairro = %s, cidade = %s,
+            uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s
+            WHERE id = %s''',
+            [nome, razaosocial, tipo, cnpj, inscest, cpf, rg, endereco, numero, complemento,
+            bairro, cidade, uf, cep, telefone1, telefone2, email, id])
+            mysql.connection.commit()
+            flash("Company Updated Successfully...!!!", "success")
+
+

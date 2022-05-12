@@ -54,8 +54,8 @@
                 <td>{{ row.endereco }}</td>
                 <td>{{ row.cidade }}</td>
                 <td>{{ row.uf }}</td>
-                <td><a href="" class="input-edit" onclick="return confirm('Are you sure to edit?')"><i
-                            class="fa fa-edit"></i></a>
+                <td><a href="{{ url_for('company_edit', id=row['id']) }}" class="input-edit"
+                        onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
             {% endfor %}
