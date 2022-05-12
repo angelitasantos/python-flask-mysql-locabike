@@ -18,7 +18,7 @@ def admin():
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
-    return render_template('/store/admin.html', title = title)
+    return render_template('/store/admin/admin.html', title = title)
 
 
 @app.route('/logout')
@@ -39,7 +39,7 @@ def admin_profile(id):
             cursor.close()
             count = cursor.rowcount
             if count != 0:
-                return render_template('/store/admin_profile.html', res = data, title = title)
+                return render_template('/store/admin/admin_profile.html', res = data, title = title)
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
@@ -60,7 +60,7 @@ def admin_register():
     ModelUser.AdminRegister(self)
     try:
         if session['amail'] != '' and session['admins'] == 1:
-            return render_template('/store/admin_register.html', title = title)
+            return render_template('/store/admin/admin_register.html', title = title)
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
@@ -82,7 +82,7 @@ def admin_list():
             count = cursor.rowcount
             if count == 0:
                 flash('Admins Not Found...!!!!', 'danger')
-            return render_template('/store/admin_list.html', res = data, title = title)
+            return render_template('/store/admin/admin_list.html', res = data, title = title)
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
@@ -127,7 +127,7 @@ def admin_pass_change():
             cursor.execute(query,[id])
             data = cursor.fetchone()
             cursor.close()
-            return render_template('/store/admin_pass_change.html', res = data, title = title)
+            return render_template('/store/admin/admin_pass_change.html', res = data, title = title)
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -152,7 +152,7 @@ def admin_pass_forgot():
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
-    return render_template('/store/admin_pass_forgot.html', title = title)
+    return render_template('/store/admin/admin_pass_forgot.html', title = title)
     
 
 @app.route('/send_message_passforgot', methods = ['GET', 'POST'])
@@ -187,16 +187,16 @@ def send_message_passforgot():
                     mail.send(message)
                     
                     flash('Mail Sent Successfully...!!!', 'success')
-                    return render_template('/store/admin_pass_redefine.html', title = redefine)
+                    return render_template('/store/admin/admin_pass_redefine.html', title = redefine)
                 else:
                     flash('Admin Not Found...!!!', 'danger')
-                    return render_template('/store/admin_pass_forgot.html', title = forgot)
+                    return render_template('/store/admin/admin_pass_forgot.html', title = forgot)
             except Exception as e:
                 print(e)
     except:
         flash('Mail Dont Sent...!!!', 'danger')
         pass
-    return render_template('/store/admin_pass_forgot.html')
+    return render_template('/store/admin/admin_pass_forgot.html')
 
 
 @app.route('/admin_pass_redefine')
@@ -212,7 +212,7 @@ def admin_pass_redefine():
             return render_template('/pages/home.html', title = 'Home')
     except Exception as e:
         print(e)
-    return render_template('/store/admin_pass_redefine.html', title = title)
+    return render_template('/store/admin/admin_pass_redefine.html', title = title)
 
 
 @app.route('/redefine_password', methods = ['GET', 'POST'])
