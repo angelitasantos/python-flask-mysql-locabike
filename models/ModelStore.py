@@ -85,4 +85,3 @@ class ModelStore:
             bairro, cidade, uf, cep, telefone1, telefone2, email, id_company, id])
             mysql.connection.commit()
             flash("Store Updated Successfully...!!!", "success")
-

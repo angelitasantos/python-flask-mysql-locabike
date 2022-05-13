@@ -70,4 +70,3 @@ def store_edit(id):
 def update_store():
     ModelStore.StoreUpdate(self)
     return redirect(url_for('store_list'))
-
