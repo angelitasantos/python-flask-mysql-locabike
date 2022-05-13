@@ -1,60 +1,66 @@
 {% extends 'base_store.html' %}
 {% block container %}
 
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('admin_list') }}">Admin</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('company_list') }}">Company</a></li>
+        <li class="viewgroup-item active" aria-current="page">Página Atual</li>
+    </ol>
+</nav>
+
 <section class="section-list">
     <div>
-        <div>
-            <h3 class="title"><i class="fa fa-users"> {{ title }}</i></h3>
+        <h3 class="title"><i class="fa fa-users"> {{ title }}</i></h3>
 
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
-            <div class="flex-between">
-                <div></div>
-                <div><a href="{{ url_for('admin_register') }}" class="input-submit">Add New Admin</a></div>
-            </div>
+        <div class="flex-between">
+            <div></div>
+            <div><a href="{{ url_for('admin_register') }}" class="input-submit">Add New Admin</a></div>
+        </div>
 
-            <div class="table-content">
-                <table class="table table-hover">
-                    <thead class="thead">
-                        <tr class="text-center">
-                            <th class="bold">S.No</th>
-                            <th class="bold">Name</th>
-                            <th class="bold">Mail</th>
-                            <th class="bold">Sitedata</th>
-                            <th class="bold">Companies</th>
-                            <th class="bold">Stores</th>
-                            <th class="bold">Admins</th>
-                            <th class="bold">Edit</th>
-                            <th class="bold">Del</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody">
-                        {% for data in res %}
-                        <tr class="text-center">
-                            <td>{{ loop.index }}</td>
-                            <td>{{ data.aname }}</td>
-                            <td>{{ data.amail }}</td>
-                            <td>{{ data.sitedata }}</td>
-                            <td>{{ data.companies }}</td>
-                            <td>{{ data.stores }}</td>
-                            <td>{{ data.admins }}</td>
-                            <td><a href="{{ url_for('admin_profile', id=data['aid']) }}" class="input-edit"
-                                    onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
-                            </td>
-                            <td><a href="{{ url_for('delete_admins', id=data['aid']) }}" class="input-delete"
-                                    onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+        <div class="table-content">
+            <table class="table table-hover">
+                <thead class="thead">
+                    <tr class="text-center">
+                        <th class="bold">S.No</th>
+                        <th class="bold">Name</th>
+                        <th class="bold">Mail</th>
+                        <th class="bold">Sitedata</th>
+                        <th class="bold">Companies</th>
+                        <th class="bold">Stores</th>
+                        <th class="bold">Admins</th>
+                        <th class="bold">Edit</th>
+                        <th class="bold">Del</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    {% for data in res %}
+                    <tr class="text-center">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ data.aname }}</td>
+                        <td>{{ data.amail }}</td>
+                        <td>{{ data.sitedata }}</td>
+                        <td>{{ data.companies }}</td>
+                        <td>{{ data.stores }}</td>
+                        <td>{{ data.admins }}</td>
+                        <td><a href="{{ url_for('admin_profile', id=data['aid']) }}" class="input-edit"
+                                onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td><a href="{{ url_for('delete_admins', id=data['aid']) }}" class="input-delete"
+                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
