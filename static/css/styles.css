@@ -474,6 +474,7 @@
 .section-list {
     min-height: 600px;
     margin: 10px 20px;
+    padding: 20px 0;
 }
 
 #result p {
@@ -545,8 +546,8 @@
 .section-company {
     display: flex;
     justify-content: center;
-    margin: 10px 0 50px;
-    padding: 0 20px;
+    margin: 20px 0;
+    padding: 20px;
 }
 
 .content-company {
@@ -842,38 +843,4 @@
 .flex-col-12 {
     flex: 0 0 auto;
     width: 100%;
-}
-
-
-/* ########################################################### */
-
-.viewgroup {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 10px 20px;
-    padding: 20px 0;
-}
-
-.viewgroup a {
-    color: var(--green1);
-}
-
-.viewgroup a:hover {
-    color: var(--green3);
-}
-
-.viewgroup-item+.viewgroup-item {
-    padding-left: 0.5rem;
-}
-
-.viewgroup-item+.viewgroup-item::before {
-    float: left;
-    padding-right: 0.5rem;
-    color: var(--green5);
-    content: var(--bs-viewgroup-divider, "/");
-}
-
-.viewgroup-item.active {
-    color: var(--green5);
 }
