@@ -3,8 +3,8 @@
 
 <nav aria-label="viewgroup">
     <ol class="viewgroup">
-        <li class="viewgroup-item"><a href="{{ url_for('company_list') }}">Company</a></li>
-        <li class="viewgroup-item"><a href="{{ url_for('store_list') }}">Store</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Provider</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Shopping</a></li>
         <li class="viewgroup-item active" aria-current="page">Página Atual</li>
     </ol>
 </nav>
@@ -31,12 +31,31 @@
                         <option value="FISICA">Física</option>
                     </select>
                 </div>
-                <div class="flex-col-9 text-right">
-                    <input type="submit" class="input-submit" value="Create New Company"
+                <div class="flex-col-6">
+                    <label class="label">Company</label>
+                    <select id="tipo" class="select" name="id_company">
+                        <option value='0'>ESCOLHA UMA EMPRESA</option>
+                        {% for row in data %}
+                        <option value="{{row['id']}}">{{[row['nome'],row['cidade'],row['uf']]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class=" flex-col-3 text-right">
+                    <input type="submit" class="input-submit" value="Create New Provider"
                         onclick="return confirm('Are you sure to create?')">
                 </div>
             </div>
 
+            <div class="flex-row">
+                <div class="flex-col">
+                    <label class="label">Grupo</label>
+                    <input type="text" name="grupo" class="input" placeholder="" maxlength="50">
+                </div>
+                <div class="flex-col">
+                    <label class="label">SubGrupo</label>
+                    <input type="text" name="subgrupo" class="input" placeholder="" maxlength="50">
+                </div>
+            </div>
             <div class="flex-row">
                 <div class="flex-col">
                     <label class="label">Nome</label>

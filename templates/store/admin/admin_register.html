@@ -1,6 +1,14 @@
 {% extends 'base_store.html' %}
 {% block container %}
 
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('admin_list') }}">Admin</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('company_list') }}">Company</a></li>
+        <li class="viewgroup-item active" aria-current="page">Página Atual</li>
+    </ol>
+</nav>
+
 <section class="section-admin">
     <div class="content">
         <div id="login">

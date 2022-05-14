@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect, flash, session, req
 from conexao_mysql import *
 
 
-class ModelCompany:
+class ModelStore:
 
     def __init__(self):
         self.nome = request.form['nome']
@@ -24,43 +24,46 @@ class ModelCompany:
         self.telefone2 = request.form['telefone2']
         self.email = request.form['email']
         self.id = request.form['id']
+        self.id_company = request.form['id_company']
 
 
-    def CompanyRegister(self):
+    def StoreRegister(self):
         if request.method == 'POST':
             try:
                 cursor = mysql.connection.cursor()
-                cursor.execute('SELECT * FROM companies WHERE email = %s', [self.email])
+                cursor.execute('SELECT * FROM stores WHERE email = %s', [self.email])
                 cursor.fetchone()
                 cursor.close()
                 count = cursor.rowcount
                 if count == 0:
                     cursor = mysql.connection.cursor()
-                    cursor.execute('''INSERT INTO companies 
+                    cursor.execute('''INSERT INTO stores 
                     (nome, razaosocial, tipo, cnpj, inscest, cpf, rg, endereco, numero, complemento,
-                    bairro, cidade, uf, cep, telefone1, telefone2, email) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+                    bairro, cidade, uf, cep, telefone1, telefone2, email, id_company) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
                     [self.nome, self.razaosocial, self.tipo, self.cnpj, self.inscest, 
                     self.cpf, self.rg, self.endereco, self.numero, self.complemento,
-                    self.bairro, self.cidade, self.uf, self.cep, self.telefone1, self.telefone2, self.email])
+                    self.bairro, self.cidade, self.uf, self.cep, self.telefone1, 
+                    self.telefone2, self.email, self.id_company])
                     mysql.connection.commit()
-                    flash('Company Created Successfully...!!!', 'success')
+                    flash('Store Created Successfully...!!!', 'success')
                 else:
-                    flash('Company Found...!!!', 'danger')
+                    flash('Store Found...!!!', 'danger')
             except Exception as e:
                 print(e)
 
 
-    def CompanyUpdate(self):
-        if request.method == 'POST':           
+    def StoreUpdate(self):
+        if request.method == 'POST':
             cursor = mysql.connection.cursor()
-            cursor.execute('''UPDATE companies 
+            cursor.execute('''UPDATE stores 
             SET nome = %s, razaosocial = %s, tipo = %s, cnpj = %s, inscest = %s, cpf = %s, rg = %s,
             endereco = %s, numero = %s, complemento = %s, bairro = %s, cidade = %s,
-            uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s
+            uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s, id_company = %s
             WHERE id = %s''',
             [self.nome, self.razaosocial, self.tipo, self.cnpj, self.inscest, 
             self.cpf, self.rg, self.endereco, self.numero, self.complemento,
-            self.bairro, self.cidade, self.uf, self.cep, self.telefone1, self.telefone2, self.email, self.id])
+            self.bairro, self.cidade, self.uf, self.cep, self.telefone1, 
+            self.telefone2, self.email, self.id_company, self.id])
             mysql.connection.commit()
-            flash("Company Updated Successfully...!!!", "success")
+            flash("Store Updated Successfully...!!!", "success")

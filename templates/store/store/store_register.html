@@ -31,8 +31,17 @@
                         <option value="FISICA">Física</option>
                     </select>
                 </div>
-                <div class="flex-col-9 text-right">
-                    <input type="submit" class="input-submit" value="Create New Company"
+                <div class="flex-col-6">
+                    <label class="label">Company</label>
+                    <select id="tipo" class="select" name="id_company">
+                        <option value='0'>ESCOLHA UMA EMPRESA</option>
+                        {% for row in data %}
+                        <option value="{{row['id']}}">{{[row['nome'],row['cidade'],row['uf']]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class=" flex-col-3 text-right">
+                    <input type="submit" class="input-submit" value="Create New Store"
                         onclick="return confirm('Are you sure to create?')">
                 </div>
             </div>
