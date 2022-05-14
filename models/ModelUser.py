@@ -5,22 +5,66 @@ from conexao_mysql import *
 
 class ModelUser:
 
-    def __init__(self) -> None:
-        pass     
+    def __init__(self):
+        self.aname = request.form['aname']
+        self.amail = request.form['amail']
+        self.sitedata = request.form['sitedata']
+        self.companies = request.form['companies']
+        self.stores = request.form['stores']
+        self.admins = request.form['admins']
+        self.acode = request.form['acode']
+        self.aid = request.form['aid']
+        
+        self.apassword = request.form['apassword']
+        self.aconfirmpassword = request.form['aconfirmpassword']
+        self.password_hash = bcrypt.generate_password_hash(self.apassword).decode('utf-8')
+        self.anewpassword = request.form['anewpassword']
+        self.aconfirmnewpassword = request.form['aconfirmnewpassword']
+        self.newpassword_hash = bcrypt.generate_password_hash(self.anewpassword).decode('utf-8')
+        
+
+    def gerar_codigo_verificacao(self):
+        digits = '0123456789'
+        qnt = 6
+        qntInt = int(qnt)
+        length = qntInt
+        all = digits
+        id = "".join(random.sample(all, length))
+        return id
+
+
+    def AdminRegister(self):
+        if request.method == 'POST':
+            try:
+                cursor = mysql.connection.cursor()
+                cursor.execute('SELECT * FROM admins WHERE amail = %s', [self.amail])
+                cursor.fetchone()
+                cursor.close()
+                count = cursor.rowcount
+                if count == 0 and self.apassword == self.aconfirmpassword:
+                    cursor = mysql.connection.cursor()
+                    cursor.execute('''INSERT INTO admins (aname, apassword, amail, sitedata, companies, stores, admins) 
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)''',
+                    [self.aname, self.password_hash, self.amail, self.sitedata, self.companies, self.stores, self.admins])
+                    mysql.connection.commit()
+                    flash('Admin Created Successfully...!!!', 'success')
+                elif count == 0 and self.apassword != self.aconfirmpassword:
+                    flash('Password and Confirm Password Dont Match...!!!', 'danger')
+                else:
+                    flash('Admin Found...!!!', 'danger')
+            except Exception as e:
+                print(e)
 
 
     def AdminLogin(self):
         if request.method == 'POST':
-            amail = request.form['amail']
-            apassword = request.form['apassword']        
-
             try:
                 cursor = mysql.connection.cursor()
-                cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
+                cursor.execute('SELECT * FROM admins WHERE amail = %s', [self.amail])
                 res = cursor.fetchone()
                 if res:
                     pw_hash = res['apassword']
-                    if bcrypt.check_password_hash(pw_hash, apassword):
+                    if bcrypt.check_password_hash(pw_hash, self.apassword):
                         session['aname'] = res['aname']
                         session['amail'] = res['amail']
                         session['apassword'] = res['apassword']
@@ -39,115 +83,48 @@ class ModelUser:
 
     def AdminUpdate(self):
         if request.method == 'POST':
-            name = request.form['aname']
-            sitedata = request.form['sitedata']
-            companies = request.form['companies']
-            stores = request.form['stores']
-            admins = request.form['admins']
-            aid = request.form['aid']
-            
             cursor = mysql.connection.cursor()
             cursor.execute('''UPDATE admins 
             SET aname = %s, sitedata = %s, companies = %s, stores = %s, admins = %s
-            WHERE aid = %s''',[name, sitedata, companies, stores, admins, aid])
+            WHERE aid = %s''',[self.aname, self.sitedata, self.companies, self.stores, self.admins, self.aid])
             mysql.connection.commit()
             flash("Admin Profile Updated Successfully...!!!", "success")
 
 
-    def AdminRegister(self):
-        if request.method == 'POST':
-            aname = request.form['aname']
-            apassword = request.form['apassword']
-            aconfirmpassword = request.form['aconfirmpassword']
-            password_hash = bcrypt.generate_password_hash(apassword).decode('utf-8')
-
-            amail = request.form['amail']
-            sitedata = request.form['sitedata']
-            companies = request.form['companies']
-            stores = request.form['stores']
-            admins = request.form['admins']
-
-            try:
-                cursor = mysql.connection.cursor()
-                cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
-                cursor.fetchone()
-                cursor.close()
-                count = cursor.rowcount
-                if count == 0 and apassword == aconfirmpassword:
-                    cursor = mysql.connection.cursor()
-                    cursor.execute('''INSERT INTO admins (aname, apassword, amail, sitedata, companies, stores, admins) 
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)''',[aname, password_hash, amail, sitedata, companies, stores, admins])
-                    mysql.connection.commit()
-                    flash('Admin Created Successfully...!!!', 'success')
-                elif count == 0 and apassword != aconfirmpassword:
-                    flash('Password and Confirm Password Dont Match...!!!', 'danger')
-                else:
-                    flash('Admin Found...!!!', 'danger')
-            except Exception as e:
-                print(e)
-
-
     def AdminUpdatePass(self):
         if request.method == 'POST':
-            amail = request.form['amail']
-            apassword = request.form['apassword']
-
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT * FROM admins WHERE amail = %s', [amail])
+            cursor.execute('SELECT * FROM admins WHERE amail = %s', [self.amail])
             res = cursor.fetchone()
             if res:
                 pw_hash = res['apassword']
-                if bcrypt.check_password_hash(pw_hash, apassword):
-                    anewpassword = request.form['anewpassword']
-                    aconfirmnewpassword = request.form['aconfirmnewpassword']
-                    newpassword_hash = bcrypt.generate_password_hash(anewpassword).decode('utf-8')
-
-                    if anewpassword == aconfirmnewpassword:
+                if bcrypt.check_password_hash(pw_hash, self.apassword):
+                    if self.anewpassword == self.aconfirmnewpassword:
                         cursor.execute('''UPDATE admins 
                         SET apassword = %s
-                        WHERE amail = %s''',[newpassword_hash, amail])
+                        WHERE amail = %s''',[self.newpassword_hash, self.amail])
                         mysql.connection.commit()
                         flash("Password Updated Successfully...!!!", "success")
-                    elif anewpassword != aconfirmnewpassword:
+                    elif self.anewpassword != self.aconfirmnewpassword:
                         flash('Password and Confirm Password Dont Match...!!!!', 'danger')
                 else:
                     flash("Invalid Current Password...!!!", "danger")
 
 
-    def gerar_codigo_verificacao(self):
-        digits = '0123456789'
-        qnt = 6
-        qntInt = int(qnt)
-        length = qntInt
-        all = digits
-        id = "".join(random.sample(all, length))
-        return id
-
-
     def AdminRedefinePass(self):
         if request.method == 'POST':
-            amail = request.form['amail']
-            acode = request.form['acode']
-
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT * FROM admins WHERE amail = %s and acode = %s', [amail, acode])
+            cursor.execute('SELECT * FROM admins WHERE amail = %s and acode = %s', [self.amail, self.acode])
             res = cursor.fetchone()
-
             if res:
-                anewpassword = request.form['anewpassword']
-                aconfirmnewpassword = request.form['aconfirmnewpassword']
-                newpassword_hash = bcrypt.generate_password_hash(anewpassword).decode('utf-8')
-
                 if request.form['acode'] == res['acode']:
-                    if anewpassword == aconfirmnewpassword:
+                    if self.anewpassword == self.aconfirmnewpassword:
                         cursor.execute('''UPDATE admins 
                         SET apassword = %s
-                        WHERE amail = %s''',[newpassword_hash, amail])
+                        WHERE amail = %s''',[self.newpassword_hash, self.amail])
                         mysql.connection.commit()
                         flash('Password Redefined Successfully...!!!', 'success')
-                    elif anewpassword != aconfirmnewpassword:
+                    elif self.anewpassword != self.aconfirmnewpassword:
                         flash('New Password and Confirm New Password Dont Match...!!!', 'danger')
             else:
                 flash('Username or Verification Code Dont Correct...!!!', 'danger')
-
-    
