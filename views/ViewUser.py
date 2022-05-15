@@ -1,6 +1,5 @@
 from models.ModelMail import *
 from models.ModelUser import *
-
 self = 'self'
 
 
@@ -11,13 +10,13 @@ def admin():
     try:
         if session['amail'] != '':
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     try:
         if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/store/admin/admin.html', title = title)
 
 
@@ -39,12 +38,12 @@ def admin_profile(id):
             cursor.close()
             count = cursor.rowcount
             if count != 0:
-                return render_template('/store/admin/admin_profile.html', res = data, title = title)
+                return render_template('/store/admin/admin_profile.html', response = data, title = title)
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/pages/home.html', title = 'Home')
 
 
@@ -64,8 +63,8 @@ def admin_register():
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/pages/home.html', title = 'Home')
 
 
@@ -75,19 +74,19 @@ def admin_list():
     try:
         if session['amail'] != '' and session['admins'] == 1:
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM admins'
+            query = 'SELECT * FROM admins ORDER BY aname'
             cursor.execute(query)
             data = cursor.fetchall()
             cursor.close()
             count = cursor.rowcount
             if count == 0:
                 flash('Admins Not Found...!!!!', 'danger')
-            return render_template('/store/admin/admin_list.html', res = data, title = title)
+            return render_template('/store/admin/admin_list.html', response = data, title = title)
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/pages/home.html', title = 'Home')
 
 
@@ -102,12 +101,12 @@ def delete_admins(id):
             cursor.close()
             count = cursor.rowcount
             if count == 1:
-                flash('Admin Cant Be Deleted...!!!!', 'danger')
+                flash('Last Admin Cant Be Deleted...!!!!', 'danger')
             else:
                 cursor = mysql.connection.cursor()
                 cursor.execute('DELETE FROM admins WHERE aid = %s', [id])
                 mysql.connection.commit()
-                flash('Admin Deleted Successfully...!!!', 'danger')
+                flash('Admin Deleted Successfully...!!!', 'success')
         elif session['amail'] != '' and session['admins'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
@@ -127,9 +126,9 @@ def admin_pass_change():
             cursor.execute(query,[id])
             data = cursor.fetchone()
             cursor.close()
-            return render_template('/store/admin/admin_pass_change.html', res = data, title = title)
-    except Exception as e:
-        print(e)
+            return render_template('/store/admin/admin_pass_change.html', response = data, title = title)
+    except Exception as error:
+        print(error)
     return render_template('/pages/home.html', title = 'Home')
 
 
@@ -145,13 +144,13 @@ def admin_pass_forgot():
     try:
         if session['amail'] != '':
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     try:
         if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/store/admin/admin_pass_forgot.html', title = title)
     
 
@@ -168,7 +167,6 @@ def send_message_passforgot():
             {code}
             Link Redefine Password
             '''
-
             try:
                 cursor = mysql.connection.cursor()
                 cursor.execute('SELECT * FROM admins WHERE amail = %s', [email])
@@ -191,8 +189,8 @@ def send_message_passforgot():
                 else:
                     flash('Admin Not Found...!!!', 'danger')
                     return render_template('/store/admin/admin_pass_forgot.html', title = forgot)
-            except Exception as e:
-                print(e)
+            except Exception as error:
+                print(error)
     except:
         flash('Mail Dont Sent...!!!', 'danger')
         pass
@@ -205,13 +203,13 @@ def admin_pass_redefine():
     try:
         if session['amail'] != '':
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     try:
         if session['umail'] != '':
             return render_template('/pages/home.html', title = 'Home')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return render_template('/store/admin/admin_pass_redefine.html', title = title)
 
 

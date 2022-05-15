@@ -11,7 +11,9 @@ class ModelFormPeople(FlaskForm):
     subgrupo = StringField('SubGrupo')
     nome = StringField('Nome', validators=[DataRequired(), Length(min=4, max=50)])
     razaosocial = StringField('Razão Social')
-    tipo = SelectField('Tipo', choices=[("JURIDICA", "PESSOA JURIDICA"), ("FISICA","PESSOA FISICA")])
+    tipo = SelectField('Tipo', 
+        choices=[   ("JURIDICA", "PESSOA JURIDICA"), 
+                    ("FISICA", "PESSOA FISICA")])
     cnpj = StringField('CNPJ')
     inscest = StringField('Insc.Est.')
     cpf = StringField('CPF')
@@ -24,40 +26,36 @@ class ModelFormPeople(FlaskForm):
     cidade = StringField('Cidade')
     uf = SelectField('UF', 
         choices=[   ("", "Escolha um Estado"),
-                    
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("MG", "Minas"),
-                    ("SP","São Paulo")])
+                    ("AC", "Acre"),
+                    ("AL", "Alagoas"),
+                    ("AP", "Amapá"),
+                    ("AM", "Amazonas"),
+                    ("BA", "Bahia"),
+                    ("CE", "Ceará"),
+                    ("DF", "Distrito Federal"),
+                    ("ES", "Espírito Santo"),
+                    ("GO", "Goiás"),
+                    ("MA", "Maranhão"),
+                    ("MT", "Mato Grosso"),
+                    ("MS", "Mato Grosso do Sul"),
+                    ("MG", "Minas Gerais"),
+                    ("PA", "Pará"),
+                    ("PB", "Paraíba"),
+                    ("PR", "Paraná"),
+                    ("PE", "Pernambuco"),
+                    ("PI", "Piauí"),
+                    ("RJ", "Rio de Janeiro"),
+                    ("RN", "Rio Grande do Norte"),
+                    ("RS", "Rio Grande do Sul"),
+                    ("RO", "Rondônia"),
+                    ("RR", "Roraima"),
+                    ("SC", "Santa Catarina"),
+                    ("SP", "São Paulo"),
+                    ("SE", "Sergipe"),
+                    ("TO", "Tocantins")])
     cep = StringField('CEP')
     telefone1 = StringField('Telefone1')
     telefone2 = StringField('Telefone2')
     email = StringField('Email', validators=[DataRequired()])
     id = StringField('ID')
-
     id_company = SelectField('Company')
