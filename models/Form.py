@@ -7,23 +7,23 @@ from wtforms.validators import DataRequired, InputRequired, Length
 
 
 class ModelFormPeople(FlaskForm):
-    grupo = StringField('Grupo')
-    subgrupo = StringField('SubGrupo')
+    grupo = StringField('Grupo', validators=[Length(min=4, max=20)])
+    subgrupo = StringField('SubGrupo', validators=[Length(min=4, max=20)])
     nome = StringField('Nome', validators=[DataRequired(), Length(min=4, max=50)])
-    razaosocial = StringField('Razão Social')
+    razaosocial = StringField('Razão Social', validators=[Length(min=4, max=150)])
     tipo = SelectField('Tipo', 
         choices=[   ("JURIDICA", "PESSOA JURIDICA"), 
                     ("FISICA", "PESSOA FISICA")])
-    cnpj = StringField('CNPJ')
-    inscest = StringField('Insc.Est.')
-    cpf = StringField('CPF')
-    rg = StringField('RG')
-    endereco = StringField('Endereço')
+    cnpj = StringField('CNPJ', validators=[Length(min=4, max=20)])
+    inscest = StringField('Insc.Est.', validators=[Length(min=4, max=20)])
+    cpf = StringField('CPF', validators=[Length(min=4, max=11)])
+    rg = StringField('RG', validators=[Length(min=4, max=11)])
+    endereco = StringField('Endereço', validators=[Length(min=4, max=100)])
     
-    numero = StringField('Num')
-    complemento = StringField('Comp.')
-    bairro = StringField('Bairro')
-    cidade = StringField('Cidade')
+    numero = StringField('Num', validators=[Length(min=4, max=10)])
+    complemento = StringField('Comp.', validators=[Length(min=4, max=20)])
+    bairro = StringField('Bairro', validators=[Length(min=4, max=50)])
+    cidade = StringField('Cidade', validators=[Length(min=4, max=50)])
     uf = SelectField('UF', 
         choices=[   ("", "Escolha um Estado"),
                     ("AC", "Acre"),
@@ -53,9 +53,9 @@ class ModelFormPeople(FlaskForm):
                     ("SP", "São Paulo"),
                     ("SE", "Sergipe"),
                     ("TO", "Tocantins")])
-    cep = StringField('CEP')
-    telefone1 = StringField('Telefone1')
-    telefone2 = StringField('Telefone2')
-    email = StringField('Email', validators=[DataRequired()])
+    cep = StringField('CEP', validators=[Length(min=4, max=8)])
+    telefone1 = StringField('Telefone1', validators=[Length(min=4, max=15)])
+    telefone2 = StringField('Telefone2', validators=[Length(min=4, max=15)])
+    email = StringField('Email', validators=[DataRequired(), Length(min=4, max=50)])
     id = StringField('ID')
     id_company = SelectField('Company')

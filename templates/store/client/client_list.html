@@ -5,7 +5,7 @@
     <ol class="viewgroup">
         <li class="viewgroup-item"><a href="{{ url_for('client_register') }}">Client</a></li>
         <li class="viewgroup-item"><a href="{{ url_for('client_register') }}">Sales</a></li>
-        <li class="viewgroup-item active" aria-current="page">Página Atual</li>
+        <li class="viewgroup-item active" aria-current="page">Client List</li>
     </ol>
 </nav>
 
@@ -62,7 +62,7 @@
                         <td>{{ row.endereco }}</td>
                         <td>{{ row.cidade }}</td>
                         <td>{{ row.uf }}</td>
-                        <td><a href="{{ url_for('provider_edit', id=row['id']) }}" class="input-edit"
+                        <td><a href="{{ url_for('client_edit', id=row['id']) }}" class="input-edit"
                                 onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
                         </td>
                     </tr>

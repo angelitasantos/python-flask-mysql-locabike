@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS admins (
     stores BOOLEAN DEFAULT 0,
     admins BOOLEAN DEFAULT 0,
     acode CHAR(6) DEFAULT 0,
-    PRIMARY KEY (aid, amail)
+    CONSTRAINT PK_admins PRIMARY KEY (aid, amail)
 );
 
 SELECT * FROM admins;
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS companies (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    CONSTRAINT PK_stores PRIMARY KEY (id, email)
+    CONSTRAINT PK_companies PRIMARY KEY (id, email)
 );
 
 SELECT * FROM companies;
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS stores (
     telefone2 CHAR(15),
     email VARCHAR(50),
     id_company INTEGER NOT NULL,
-    CONSTRAINT PK_stores PRIMARY KEY (id_company, email),
+    CONSTRAINT PK_stores PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
         REFERENCES companies (id)
 );
@@ -68,8 +68,8 @@ SELECT * FROM stores;
 
 CREATE TABLE IF NOT EXISTS providers (
     id INTEGER AUTO_INCREMENT,
-    grupo VARCHAR(50),
-    subgrupo VARCHAR(50),
+    grupo VARCHAR(20),
+    subgrupo VARCHAR(20),
     nome VARCHAR(50) NOT NULL,
     razaosocial VARCHAR(150),
     tipo CHAR(10) NOT NULL DEFAULT 'JURIDICA',
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS providers (
     telefone2 CHAR(15),
     email VARCHAR(50),
     id_company INTEGER NOT NULL,
-    CONSTRAINT PK_stores PRIMARY KEY (id, id_company, email),
+    CONSTRAINT PK_providers PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
         REFERENCES companies (id)
 );
@@ -98,8 +98,8 @@ SELECT * FROM providers;
 
 CREATE TABLE IF NOT EXISTS clients (
     id INTEGER AUTO_INCREMENT,
-    grupo VARCHAR(50),
-    subgrupo VARCHAR(50),
+    grupo VARCHAR(20),
+    subgrupo VARCHAR(20),
     nome VARCHAR(50) NOT NULL,
     razaosocial VARCHAR(150),
     tipo CHAR(10) NOT NULL DEFAULT 'JURIDICA',
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS clients (
     telefone2 CHAR(15),
     email VARCHAR(50),
     id_company INTEGER NOT NULL,
-    CONSTRAINT PK_stores PRIMARY KEY (id, id_company, email),
+    CONSTRAINT PK_clients PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
         REFERENCES companies (id)
 );

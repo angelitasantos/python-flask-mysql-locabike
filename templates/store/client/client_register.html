@@ -3,9 +3,9 @@
 
 <nav aria-label="viewgroup">
     <ol class="viewgroup">
-        <li class="viewgroup-item"><a href="{{ url_for('client_register') }}">Client</a></li>
-        <li class="viewgroup-item"><a href="{{ url_for('client_register') }}">Sales</a></li>
-        <li class="viewgroup-item active" aria-current="page">Página Atual</li>
+        <li class="viewgroup-item"><a href="{{ url_for('client_list') }}">Client</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('client_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Client Register</li>
     </ol>
 </nav>
 
@@ -13,7 +13,7 @@
     <div class="content-company">
         <h3 class="title"><i class="fa fa-briefcase"> {{ title }}</i></h3>
         <br>
-        <form method="POST" action="">
+        <form method="POST" action="/create_client">
 
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -31,7 +31,7 @@
                 <div class="flex-col-6">
                     <label class="label">Company</label>
                     <select id="tipo" class="select" name="id_company">
-                        <option value='0'>ESCOLHA UMA EMPRESA</option>
+                        <option value='1'>ESCOLHA UMA EMPRESA</option>
                         {% for row in response %}
                         <option value="{{row['id']}}">{{row['nome'],row['cidade'],row['uf']}}</option>
                         {% endfor %}
@@ -46,95 +46,15 @@
             <div class="flex-row">
                 <div class="flex-col">
                     {{ form.grupo.label (class="label") }}
-                    {{ form.grupo (class="input", maxlength=50) }}
+                    {{ form.grupo (class="input") }}
                 </div>
                 <div class="flex-col">
                     {{ form.subgrupo.label (class="label") }}
-                    {{ form.subgrupo (class="input", maxlength=50) }}
+                    {{ form.subgrupo (class="input") }}
                 </div>
             </div>
 
-            <div class="flex-row">
-                <div class="flex-col">
-                    {{ form.nome.label (class="label") }}
-                    {{ form.nome (class="input") }}
-                </div>
-                <div class="flex-col">
-                    {{ form.razaosocial.label (class="label") }}
-                    {{ form.razaosocial (class="input", maxlength=150) }}
-                </div>
-            </div>
-
-            <div class="flex-row">
-                <div class="flex-col-6">
-                    {{ form.email.label (class="label") }}
-                    {{ form.email (class="input", maxlength=50) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.telefone1.label (class="label") }}
-                    {{ form.telefone1 (class="input", maxlength=15) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.telefone2.label (class="label") }}
-                    {{ form.telefone2 (class="input", maxlength=15) }}
-                </div>
-            </div>
-
-            <div class="flex-row">
-                <div class="flex-col-3">
-                    {{ form.cnpj.label (class="label") }}
-                    {{ form.cnpj (class="input", maxlength=20) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.inscest.label (class="label") }}
-                    {{ form.inscest (class="input", maxlength=20) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.cpf.label (class="label") }}
-                    {{ form.cpf (class="input", maxlength=11) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.rg.label (class="label") }}
-                    {{ form.rg (class="input", maxlength=11) }}
-                </div>
-            </div>
-
-            <div class="flex-row">
-                <div class="flex-col-9">
-                    {{ form.endereco.label (class="label") }}
-                    {{ form.endereco (class="input", maxlength=100) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.numero.label (class="label") }}
-                    {{ form.numero (class="input", maxlength=10) }}
-                </div>
-            </div>
-
-            <div class="flex-row">
-                <div class="flex-col-3">
-                    {{ form.complemento.label (class="label") }}
-                    {{ form.complemento (class="input", maxlength=20) }}
-                </div>
-                <div class="flex-col-6">
-                    {{ form.bairro.label (class="label") }}
-                    {{ form.bairro (class="input", maxlength=50) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.cep.label (class="label") }}
-                    {{ form.cep (class="input", maxlength=8) }}
-                </div>
-            </div>
-
-            <div class="flex-row">
-                <div class="flex-col-9">
-                    {{ form.cidade.label (class="label") }}
-                    {{ form.cidade (class="input", maxlength=50) }}
-                </div>
-                <div class="flex-col-3">
-                    {{ form.uf.label(class="label") }}
-                    {{ form.uf(class="select") }}
-                </div>
-            </div>
+            {% include 'layout/form/form_people_register.html' %}
 
         </form>
     </div>

@@ -1,0 +1,71 @@
+{% extends 'base_store.html' %}
+{% block container %}
+
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('client_list') }}">Client</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('client_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Client Edit</li>
+    </ol>
+</nav>
+
+<section class="section-company">
+    <div class="content-company">
+        <h3 class="title"><i class="fa fa-briefcase"> {{ title }}</i></h3>
+        <br>
+        <form method="POST" action="/update_client">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="flex-row">
+                <div class="flex-col-2">
+                    <label class="label">Tipo</label>
+                    <select id="tipo" class="select" name="tipo">
+                        <option value="{{ response.tipo }}">{{ response.tipo }}</option>
+                        <option value="JURIDICA">Jurídica</option>
+                        <option value="FISICA">Física</option>
+                    </select>
+                </div>
+                <div class="flex-col-7">
+                    <label class="label">Company</label>
+                    <select id="tipo" class="select" name="id_company">
+                        <option value="{{ response.id_company }}">{{ response['c.nome'] }}</option>
+                        {% for row in companies %}
+                        <option id="escolha" value="{{row['id']}}">
+                            {{[row['id'],row['nome'],row['cidade'],row['uf']]}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex-col-3 text-right">
+                    <input type="submit" class="input-submit" value="Edit Client"
+                        onclick="return confirm('Are you sure to create?')">
+                </div>
+            </div>
+            <div>
+                <input type="hidden" name="id" value="{{ response.id }}">
+            </div>
+            <div class="flex-row">
+                <div class="flex-col">
+                    {{ form.grupo.label (class="label") }}
+                    {{ form.grupo (class="input", value=response.grupo) }}
+                </div>
+                <div class="flex-col">
+                    {{ form.subgrupo.label (class="label") }}
+                    {{ form.subgrupo (class="input", value=response.subgrupo) }}
+                </div>
+            </div>
+
+            {% include 'layout/form/form_people_edit.html' %}
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}

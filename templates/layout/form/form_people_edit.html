@@ -1,0 +1,110 @@
+<div class="flex-row">
+    <div class="flex-col">
+        {{ form.nome.label (class="label") }}
+        {{ form.nome (class="input", value=response.nome) }}
+    </div>
+    <div class="flex-col">
+        {{ form.razaosocial.label (class="label") }}
+        {{ form.razaosocial (class="input", value=response.razaosocial) }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-6">
+        {{ form.email.label (class="label") }}
+        {{ form.email (class="input", value=response.email) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.telefone1.label (class="label") }}
+        {{ form.telefone1 (class="input", value=response.telefone1) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.telefone2.label (class="label") }}
+        {{ form.telefone2 (class="input", value=response.telefone2) }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-3">
+        {{ form.cnpj.label (class="label") }}
+        {{ form.cnpj (class="input", value=response.cnpj) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.inscest.label (class="label") }}
+        {{ form.inscest (class="input", value=response.inscest) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.cpf.label (class="label") }}
+        {{ form.cpf (class="input", value=response.cpf) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.rg.label (class="label") }}
+        {{ form.rg (class="input", value=response.rg) }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-9">
+        {{ form.endereco.label (class="label") }}
+        {{ form.endereco (class="input", value=response.endereco) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.numero.label (class="label") }}
+        {{ form.numero (class="input", value=response.numero) }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-3">
+        {{ form.complemento.label (class="label") }}
+        {{ form.complemento (class="input", value=response.complemento) }}
+    </div>
+    <div class="flex-col-6">
+        {{ form.bairro.label (class="label") }}
+        {{ form.bairro (class="input", value=response.bairro) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.cep.label (class="label") }}
+        {{ form.cep (class="input", value=response.cep) }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-9">
+        {{ form.cidade.label (class="label") }}
+        {{ form.cidade (class="input", value=response.cidade) }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.uf.label(class="label") }}
+        <select id="estado" class="select" name="uf">
+            <option value="{{ response.uf }}">{{ response.uf }}</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+    </div>
+</div>
