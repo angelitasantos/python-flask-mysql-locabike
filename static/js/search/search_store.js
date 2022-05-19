@@ -2,7 +2,7 @@ $(document).ready(function () {
     load_data_item();
     function load_data_item(query = '') {
         $.ajax({
-            url: "/companyrecords",
+            url: "/storerecords",
             method: "POST",
             data: { query: query },
             success: function (data) {

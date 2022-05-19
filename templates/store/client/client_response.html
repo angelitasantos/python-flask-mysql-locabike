@@ -23,10 +23,10 @@
                 <td>{{ row.endereco }}</td>
                 <td>{{ row.cidade }}</td>
                 <td>{{ row.uf }}</td>
-                <td><a href="{{ url_for('company_edit', id=row['id']) }}" class="input-edit"
+                <td><a href="{{ url_for('client_edit', id=row['id']) }}" class="input-edit"
                         onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
                 </td>
-                <td><a href="{{ url_for('delete_companies', id=row['id']) }}" class="input-delete"
+                <td><a href="{{ url_for('delete_clients', id=row['id']) }}" class="input-delete"
                         onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>

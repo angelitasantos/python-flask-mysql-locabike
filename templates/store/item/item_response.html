@@ -11,6 +11,7 @@
                 <th class="bold">Tamanho</th>
                 <th class="bold">Edit</th>
                 <th class="bold">View</th>
+                <th class="bold">Del</th>
             </tr>
         </thead>
         <tbody class="tbody text-center">
@@ -28,6 +29,9 @@
                 </td>
                 <td><a href="{{ url_for('item_view', id=row['id']) }}" class="input-submit"><i
                             class="fa fa-eye"></i></a>
+                </td>
+                <td><a href="{{ url_for('delete_items', id=row['id']) }}" class="input-delete"
+                        onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
             {% endfor %}

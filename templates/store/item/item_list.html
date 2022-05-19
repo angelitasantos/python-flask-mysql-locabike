@@ -27,9 +27,10 @@
             </div>
             <div class="flex-col-9">
                 <select name="search_filter" id="search_filter" class="select">
-                    <option value="">Select Option</option>';
-                    {% for row in response %}
-                    <option value="{{row['c.id']}}">{{row['c.nome']}}</option>';
+                    <option value="">Escolha uma Empresa</option>';
+                    {% for row in companies %}
+                    <option id="escolha" value="{{row['id']}}">{{[row['id'],row['nome'],row['cidade'],row['uf']]}}
+                    </option>
                     {% endfor %}
                 </select>
                 <input type="hidden" name="hidden_value" id="hidden_value" />

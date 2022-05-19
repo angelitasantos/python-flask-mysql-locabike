@@ -39,25 +39,20 @@ def company_list():
     return render_template('/pages/home.html', title='Home')
 
 
-@app.route("/company_search", methods=["POST","GET"])
-def company_search():
-    try:
-        cursor = mysql.connection.cursor()
-        if request.method == 'POST':
-            search_word = request.form['query']
-            print(search_word)
-            if search_word != '':
-                query = """SELECT * from companies WHERE nome LIKE '%{}%' OR email LIKE '%{}%' 
-                OR telefone1 LIKE '%{}%' OR telefone2 LIKE '%{}%' 
-                ORDER BY nome ASC LIMIT 20""".format(search_word,search_word,search_word,search_word)
-                cursor.execute(query)   
-                numrows = int(cursor.rowcount)
-                response = cursor.fetchall()
-                print(numrows)
-                return jsonify({'htmlcompanyresponse': render_template('/store/company/company_response.html', response=response, numrows=numrows)})
-    except Exception as error:
-        print(error)        
-    return render_template('/store/company/company_response.html')
+@app.route("/companyrecords",methods=["POST","GET"])
+def companyrecords():
+    cursor = mysql.connection.cursor()
+    if request.method == 'POST':
+        query = request.form['query']
+        if query == '':
+            cursor.execute("SELECT * FROM companies ORDER BY nome ASC")
+            responselist = cursor.fetchall()
+        else:
+            search_text = request.form['query']
+            print(search_text)
+            cursor.execute("SELECT * FROM companies ORDER BY nome ASC", [search_text])
+            responselist = cursor.fetchall()  
+    return jsonify({'htmlresponse': render_template('/store/company/company_response.html', responselist=responselist)})
 
 
 @app.route('/company_edit/<string:id>')
@@ -85,4 +80,29 @@ def company_edit(id):
 @app.route('/update_company', methods=['GET','POST'])
 def update_company():
     CompanyUpdate()
+    return redirect(url_for('company_list'))
+
+
+@app.route('/delete_companies/<string:id>', methods = ['GET', 'POST'])
+def delete_companies(id):
+    try:
+        if session['amail'] != '' and session['companies'] == 1:
+            cursor = mysql.connection.cursor()
+            query = 'SELECT * FROM companies'
+            cursor.execute(query)
+            data = cursor.fetchall()
+            cursor.close()
+            count = cursor.rowcount
+            if count == 1:
+                flash('Last Company Cant Be Deleted...!!!!', 'danger')
+            else:
+                cursor = mysql.connection.cursor()
+                cursor.execute('DELETE FROM companies WHERE id = %s', [id])
+                mysql.connection.commit()
+                flash('Company Deleted Successfully...!!!', 'success')
+        elif session['amail'] != '' and session['companies'] == 0:
+            flash('Dont Have Access To This functionality...!!!!', 'danger')
+            return render_template('/layout/store.html', title = 'Store')
+    except Exception as e:
+        print(e)
     return redirect(url_for('company_list'))
