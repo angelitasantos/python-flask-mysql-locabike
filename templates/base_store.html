@@ -4,6 +4,7 @@
 <head>
     {% include 'layout/head_property.html' %}
     {% include 'layout/static_css.html' %}
+    {% block style %} {% endblock %}
 </head>
 
 <body>
@@ -19,6 +20,8 @@
     </div>
 
     {% include 'layout/static_js.html' %}
+    {% block script %} {% endblock %}
+
 </body>
 
 </html>

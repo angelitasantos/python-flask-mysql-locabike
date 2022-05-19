@@ -1,0 +1,36 @@
+<div class="table-content">
+    <table class="table table-hover">
+        <thead class="thead">
+            <tr class="text-center">
+                <th class="bold">ID</th>
+                <th class="bold">Cod.Int.</th>
+                <th class="bold">Name</th>
+                <th class="bold">Description</th>
+                <th class="bold">UnMed</th>
+                <th class="bold">Cor</th>
+                <th class="bold">Tamanho</th>
+                <th class="bold">Edit</th>
+                <th class="bold">View</th>
+            </tr>
+        </thead>
+        <tbody class="tbody text-center">
+            {% for row in responselist %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.codigointerno }}</td>
+                <td>{{ row.nome }}</td>
+                <td>{{ row.descricao }}</td>
+                <td>{{ row.un }}</td>
+                <td>{{ row.cor }}</td>
+                <td>{{ row.tamanho }}</td>
+                <td><a href="{{ url_for('item_edit', id=row['id']) }}" class="input-edit"
+                        onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
+                </td>
+                <td><a href="{{ url_for('item_view', id=row['id']) }}" class="input-submit"><i
+                            class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
