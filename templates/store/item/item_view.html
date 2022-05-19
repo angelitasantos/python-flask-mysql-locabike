@@ -15,13 +15,7 @@
         <br>
         <form method="POST" action="">
 
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
+            {% include 'layout/message_alert.html' %}
 
             <div class="flex-row">
                 <div class="flex-col-3">

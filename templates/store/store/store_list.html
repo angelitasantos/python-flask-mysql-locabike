@@ -13,13 +13,7 @@
     <div>
         <h3 class="title"><i class="fa fa-bars"> {{ title }}</i></h3>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+        {% include 'layout/message_alert.html' %}
 
         <div class="flex-between">
             <div class="flex-col-1">
