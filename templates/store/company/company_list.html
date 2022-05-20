@@ -11,32 +11,33 @@
 
 <section class="section-list">
     <div>
-        <h3 class="title"><i class="fa fa-users"> {{ title }}</i></h3>
+        <h3 class="title"><i class="fa fa-bars"> {{ title }}</i></h3>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+        {% include 'layout/message_alert.html' %}
 
         <div class="flex-between">
             <div></div>
             <div><a href="{{ url_for('company_register') }}" class="input-submit">Add New Company</a></div>
         </div>
 
-        <div class="search-table">
-            <div class="search-box">
-                <input type="text" name="search_text" id="search_text" class="input"
-                    placeholder="Search Fields: Nome, Razão Social, E-mail, Telefone">
-            </div>
-            <div id="result"></div>
-        </div>
-        <br>
+        <div class="table-content">
+            <table class="table table-hover">
+                <thead class="thead">
 
+                </thead>
+                <tbody class="tbody">
+
+                </tbody>
+            </table>
+        </div>
+
+        <br>
 
     </div>
 </section>
+
+{% block script %}
+<script src="{{ url_for('static', filename = 'js/search/search_company.js') }}"></script>
+{% endblock %}
 
 {% endblock %}

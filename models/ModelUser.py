@@ -21,12 +21,12 @@ class ModelUser:
 
     def AdminRegister(self):
         if request.method == 'POST':
-            aname = request.form['aname']
+            aname = request.form['aname'].upper()
             apassword = request.form['apassword']
             aconfirmpassword = request.form['aconfirmpassword']
             password_hash = bcrypt.generate_password_hash(apassword).decode('utf-8')
 
-            amail = request.form['amail']
+            amail = request.form['amail'].lower()
             sitedata = request.form['sitedata']
             companies = request.form['companies']
             stores = request.form['stores']
@@ -56,7 +56,7 @@ class ModelUser:
 
     def AdminLogin(self):
         if request.method == 'POST':
-            amail = request.form['amail']
+            amail = request.form['amail'].lower()
             apassword = request.form['apassword']        
             try:
                 cursor = mysql.connection.cursor()
@@ -84,7 +84,7 @@ class ModelUser:
 
     def AdminUpdate(self):
         if request.method == 'POST':
-            name = request.form['aname']
+            name = request.form['aname'].upper()
             sitedata = request.form['sitedata']
             companies = request.form['companies']
             stores = request.form['stores']
@@ -101,7 +101,7 @@ class ModelUser:
 
     def AdminUpdatePass(self):
         if request.method == 'POST':
-            amail = request.form['amail']
+            amail = request.form['amail'].lower()
             apassword = request.form['apassword']
 
             cursor = mysql.connection.cursor()
@@ -127,7 +127,7 @@ class ModelUser:
 
     def AdminRedefinePass(self):
         if request.method == 'POST':
-            amail = request.form['amail']
+            amail = request.form['amail'].lower()
             acode = request.form['acode']
 
             cursor = mysql.connection.cursor()

@@ -1,0 +1,136 @@
+<div class="tab-dados" id="tab-dados1">
+    <br>
+
+    <div class="flex-row">
+        <div class="flex-col-4">
+            {{ form.nome.label (class="label") }}
+            {{ form.nome (class="input", value=response.nome) }}
+        </div>
+        <div class="flex-col-8">
+            {{ form.descricao.label (class="label") }}
+            {{ form.descricao (class="input", value=response.descricao) }}
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="flex-col-2">
+            {{ form.un.label (class="label") }}
+            {{ form.un (class="input", value=response.un) }}
+        </div>
+        <div class="flex-col-3">
+            {{ form.cor.label (class="label") }}
+            {{ form.cor (class="input", value=response.cor) }}
+        </div>
+        <div class="flex-col-3">
+            {{ form.tamanho.label(class="label") }}
+            {{ form.tamanho(class="input", value=response.tamanho) }}
+        </div>
+        <div class="flex-col-4">
+            <label class="label">Classificação</label>
+            <select id="tipo" class="select" name="tipo">
+                <option value="{{ response.classificacao }}">{{ response.classificacao }}</option>
+                <option value="1">[1] - Produto para Revenda</option>
+                <option value="2">[2] - Produção Própria</option>
+                <option value="3">[3] - Serviço Prestado</option>
+                <option value="4">[4] - Uso e Consumo</option>
+                <option value="5">[5] - Serviços Diversos</option>
+                <option value="6">[9] - Ativo Imobilizado</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+
+<div class="tab-dados" id="tab-dados2">
+    <br>
+
+    <div class="flex-row">
+        <div class="flex-col-2">
+            {{ form.pesoliquido.label (class="label") }}
+            {{ form.pesoliquido (class="input", value=response.pesoliquido) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.pesobruto.label (class="label") }}
+            {{ form.pesobruto (class="input", value=response.pesobruto) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.altura.label(class="label") }}
+            {{ form.altura(class="input", value=response.altura) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.largura.label(class="label") }}
+            {{ form.largura(class="input", value=response.largura) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.comprimento.label(class="label") }}
+            {{ form.comprimento(class="input", value=response.comprimento) }}
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="flex-col-2">
+            {{ form.estoqueminino.label (class="label") }}
+            {{ form.estoqueminino (class="input", value=response.estoqueminino) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.estoquemaximo.label (class="label") }}
+            {{ form.estoquemaximo (class="input", value=response.estoquemaximo) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.leadtime.label(class="label") }}
+            {{ form.leadtime(class="input", value=response.leadtime) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.loteminino.label(class="label") }}
+            {{ form.loteminino(class="input", value=response.loteminino) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.lotemaximo.label(class="label") }}
+            {{ form.lotemaximo(class="input", value=response.lotemaximo) }}
+        </div>
+    </div>
+
+</div>
+
+<div class="tab-dados" id="tab-dados3">
+    <br>
+
+    <div class="flex-row">
+        <div class="flex-col-3">
+            {{ form.grupo.label (class="label") }}
+            {{ form.grupo (class="input", value=response.grupo) }}
+        </div>
+        <div class="flex-col-3">
+            {{ form.subgrupo.label (class="label") }}
+            {{ form.subgrupo (class="input", value=response.subgrupo) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.codigointerno.label (class="label") }}
+            {{ form.codigointerno (class="input", value=response.codigointerno) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.ativo.label(class="label") }}
+            {{ form.ativo(class="select") }}
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="flex-col-3">
+            {{ form.ean.label (class="label") }}
+            {{ form.ean (class="input", value=response.ean) }}
+        </div>
+        <div class="flex-col-3">
+            {{ form.dun.label (class="label") }}
+            {{ form.dun (class="input", value=response.dun) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.ncm.label (class="label") }}
+            {{ form.ncm (class="input", value=response.ncm) }}
+        </div>
+        <div class="flex-col-2">
+            {{ form.cest.label (class="label") }}
+            {{ form.cest (class="input", value=response.cest) }}
+        </div>
+    </div>
+
+</div>

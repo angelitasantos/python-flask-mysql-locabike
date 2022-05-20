@@ -3,9 +3,9 @@
 
 <nav aria-label="viewgroup">
     <ol class="viewgroup">
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Provider</a></li>
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Shopping</a></li>
-        <li class="viewgroup-item active" aria-current="page">Provider Register</li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Item</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Item Register</li>
     </ol>
 </nav>
 
@@ -13,7 +13,7 @@
     <div class="content-company">
         <h3 class="title"><i class="fa fa-plus"> {{ title }}</i></h3>
         <br>
-        <form method="POST" action="/create_provider">
+        <form method="POST" action="/create_item">
 
             {% include 'layout/message_alert.html' %}
 
@@ -32,23 +32,27 @@
                     </select>
                 </div>
                 <div class=" flex-col-3 text-right">
-                    <input type="submit" class="input-submit" value="Create New Provider"
+                    <input type="submit" class="input-submit" value="Create New Item"
                         onclick="return confirm('Are you sure to create?')">
                 </div>
             </div>
 
-            <div class="flex-row">
-                <div class="flex-col">
-                    {{ form.grupo.label (class="label") }}
-                    {{ form.grupo (class="input") }}
-                </div>
-                <div class="flex-col">
-                    {{ form.subgrupo.label (class="label") }}
-                    {{ form.subgrupo (class="input") }}
-                </div>
-            </div>
+            <nav class="navigation flex-column">
+                <ul class="navigation navigation-tabs" id="myTab">
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados1" href="#tab-dados1" onclick="openNavTab1()">Dados 1</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados2" href="#tab-dados2" onclick="openNavTab2()">Dados 2</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados3" href="#tab-dados3" onclick="openNavTab3()">Dados 3</a>
+                    </li>
+                </ul>
 
-            {% include 'layout/form/form_people_register.html' %}
+                {% include 'layout/form/form_item_register.html' %}
+
+            </nav>
 
         </form>
     </div>

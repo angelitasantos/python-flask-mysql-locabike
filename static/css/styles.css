@@ -351,7 +351,7 @@
     border-radius: 4px;
     color: var(--green1);
     font-size: 1em;
-    padding: calc(0.6em - 1px);
+    padding: calc(0.4em - 1px);
 }
 
 .select {
@@ -361,7 +361,7 @@
     border-radius: 4px;
     color: var(--green1);
     font-size: 1em;
-    padding: calc(0.6em - 1px);
+    padding: calc(0.4em - 1px);
 }
 
 .input,
@@ -590,7 +590,7 @@
 .wrapper .header-navbar .header-navbar-menu .sidebar-btn {
     color: var(--light);
     position: absolute;
-    margin-left: 240px;
+    margin-left: 220px;
     font-size: 1.5em;
     font-weight: 900;
     cursor: pointer;
@@ -875,4 +875,50 @@
 
 .viewgroup-item.active {
     color: var(--green5);
+}
+
+
+/* ########################################################### */
+
+.navigation {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.tab-dados {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.navigation-tabs {
+    border-bottom: 1px solid var(--green6);
+}
+
+.navigation-item {
+    margin-top: 10px;
+}
+
+.navigation-tabs .navigation-link {
+    margin-right: 10px;
+    padding: 5px 10px 0 10px;
+    margin-bottom: -1px;
+    background: var(--green6);
+    color: var(--green1);
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    font-size: 0.8em;
+}
+
+.navigation-tabs .navigation-link:hover,
+.navigation-tabs .navigation-link:focus {
+    border-color: var(--green5) var(--green5) var(--green6);
+    background-color: var(--green3);
+    color: var(--green7);
+    isolation: isolate;
 }

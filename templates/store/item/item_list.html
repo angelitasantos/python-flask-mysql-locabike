@@ -3,9 +3,9 @@
 
 <nav aria-label="viewgroup">
     <ol class="viewgroup">
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Provider</a></li>
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Shopping</a></li>
-        <li class="viewgroup-item active" aria-current="page">Provider List</li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Item</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Item List</li>
     </ol>
 </nav>
 
@@ -29,7 +29,7 @@
                 </select>
                 <input type="hidden" name="hidden_value" id="hidden_value" />
             </div>
-            <div><a href="{{ url_for('provider_register') }}" class="input-submit">Add New Provider</a>
+            <div><a href="{{ url_for('item_register') }}" class="input-submit">Add New Item</a>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
 </section>
 
 {% block script %}
-<script src="{{ url_for('static', filename = 'js/search/search_provider.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/search/search_item.js') }}"></script>
 {% endblock %}
 
 {% endblock %}

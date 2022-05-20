@@ -3,9 +3,9 @@
 
 <nav aria-label="viewgroup">
     <ol class="viewgroup">
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Provider</a></li>
-        <li class="viewgroup-item"><a href="{{ url_for('provider_list') }}">Shopping</a></li>
-        <li class="viewgroup-item active" aria-current="page">Provider Edit</li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Item</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Item Edit</li>
     </ol>
 </nav>
 
@@ -13,20 +13,20 @@
     <div class="content-company">
         <h3 class="title"><i class="fa fa-edit"> {{ title }}</i></h3>
         <br>
-        <form method="POST" action="/update_provider">
+        <form method="POST" action="/update_item">
 
             {% include 'layout/message_alert.html' %}
 
             <div class="flex-row">
-                <div class="flex-col-2">
+                <div class="flex-col-3">
                     <label class="label">Tipo</label>
                     <select id="tipo" class="select" name="tipo">
                         <option value="{{ response.tipo }}">{{ response.tipo }}</option>
-                        <option value="JURIDICA">Jurídica</option>
-                        <option value="FISICA">Física</option>
+                        <option value="PRODUTO">PRODUTO</option>
+                        <option value="SERVICO">SERVICO</option>
                     </select>
                 </div>
-                <div class="flex-col-7">
+                <div class="flex-col-6">
                     <label class="label">Company</label>
                     <select id="tipo" class="select" name="id_company">
                         <option value="{{ response.id_company }}">{{ response['c.nome'] }}</option>
@@ -37,26 +37,31 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="flex-col-3 text-right">
-                    <input type="submit" class="input-submit" value="Edit Provider"
+                <div class=" flex-col-3 text-right">
+                    <input type="submit" class="input-submit" value="Edit Item"
                         onclick="return confirm('Are you sure to create?')">
                 </div>
             </div>
             <div>
                 <input type="hidden" name="id" value="{{ response.id }}">
             </div>
-            <div class="flex-row">
-                <div class="flex-col">
-                    {{ form.grupo.label (class="label") }}
-                    {{ form.grupo (class="input", value=response.grupo) }}
-                </div>
-                <div class="flex-col">
-                    {{ form.subgrupo.label (class="label") }}
-                    {{ form.subgrupo (class="input", value=response.subgrupo) }}
-                </div>
-            </div>
 
-            {% include 'layout/form/form_people_edit.html' %}
+            <nav class="navigation flex-column">
+                <ul class="navigation navigation-tabs" id="myTab">
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados1" href="#tab-dados1" onclick="openNavTab1()">Dados 1</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados2" href="#tab-dados2" onclick="openNavTab2()">Dados 2</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a class="navigation-link" id="dados3" href="#tab-dados3" onclick="openNavTab3()">Dados 3</a>
+                    </li>
+                </ul>
+
+                {% include 'layout/form/form_item_edit.html' %}
+
+            </nav>
 
         </form>
     </div>

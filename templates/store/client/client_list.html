@@ -11,27 +11,23 @@
 
 <section class="section-list">
     <div>
-        <h3 class="title"><i class="fa fa-users"> {{ title }}</i></h3>
+        <h3 class="title"><i class="fa fa-bars"> {{ title }}</i></h3>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+        {% include 'layout/message_alert.html' %}
 
         <div class="flex-between">
             <div class="flex-col-1">
                 <label class="label">Company</label>
             </div>
             <div class="flex-col-9">
-                <select id="tipo" class="select" name="id_company">
-                    <option value='0'>ESCOLHA UMA EMPRESA</option>
+                <select name="search_filter" id="search_filter" class="select">
+                    <option value="">Escolha uma Empresa</option>';
                     {% for row in companies %}
-                    <option id="escolha" value="{{row['id']}}">{{[row['nome'],row['cidade'],row['uf']]}}</option>
+                    <option id="escolha" value="{{row['id']}}">{{[row['id'],row['nome'],row['cidade'],row['uf']]}}
+                    </option>
                     {% endfor %}
                 </select>
+                <input type="hidden" name="hidden_value" id="hidden_value" />
             </div>
             <div><a href="{{ url_for('client_register') }}" class="input-submit">Add New Client</a>
             </div>
@@ -40,34 +36,10 @@
         <div class="table-content">
             <table class="table table-hover">
                 <thead class="thead">
-                    <tr class="text-center">
-                        <th class="bold">ID</th>
-                        <th class="bold">Name</th>
-                        <th class="bold">Mail</th>
-                        <th class="bold">Phone1</th>
-                        <th class="bold">Address</th>
-                        <th class="bold">City</th>
-                        <th class="bold">State</th>
-                        <th class="bold">Edit</th>
-                    </tr>
+
                 </thead>
                 <tbody class="tbody">
-                    {% for row in response %}
-                    {% if (row['c.id']) == company %}
-                    <tr class="text-center">
-                        <td>{{ row.id }}</td>
-                        <td>{{ row.nome }}</td>
-                        <td>{{ row.email }}</td>
-                        <td>{{ row.telefone1 }}</td>
-                        <td>{{ row.endereco }}</td>
-                        <td>{{ row.cidade }}</td>
-                        <td>{{ row.uf }}</td>
-                        <td><a href="{{ url_for('client_edit', id=row['id']) }}" class="input-edit"
-                                onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
+
                 </tbody>
             </table>
         </div>
@@ -75,5 +47,9 @@
         <br>
     </div>
 </section>
+
+{% block script %}
+<script src="{{ url_for('static', filename = 'js/search/search_client.js') }}"></script>
+{% endblock %}
 
 {% endblock %}

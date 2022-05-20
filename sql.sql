@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS admins (
     stores BOOLEAN DEFAULT 0,
     admins BOOLEAN DEFAULT 0,
     acode CHAR(6) DEFAULT 0,
+    active BOOLEAN DEFAULT 1,
     CONSTRAINT PK_admins PRIMARY KEY (aid, amail)
 );
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS companies (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
+    active BOOLEAN DEFAULT 1,
     CONSTRAINT PK_companies PRIMARY KEY (id, email)
 );
 
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS stores (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
+    active BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_stores PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -87,6 +90,7 @@ CREATE TABLE IF NOT EXISTS providers (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
+    active BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_providers PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -117,6 +121,7 @@ CREATE TABLE IF NOT EXISTS clients (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
+    active BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_clients PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -124,3 +129,39 @@ CREATE TABLE IF NOT EXISTS clients (
 );
 
 SELECT * FROM clients;
+
+
+CREATE TABLE IF NOT EXISTS items (
+    id INTEGER AUTO_INCREMENT,
+    grupo VARCHAR(20),
+    subgrupo VARCHAR(20),
+    nome VARCHAR(50) NOT NULL,
+    descricao VARCHAR(150),
+    un CHAR(10),
+    tipo CHAR(10) NOT NULL DEFAULT 'PRODUTO',
+    codigointerno CHAR(20),
+    ean CHAR(13),
+    dun CHAR(14),
+    cor CHAR(20),
+    tamanho CHAR(10),
+    largura DECIMAL,
+    altura DECIMAL,
+    comprimento DECIMAL,
+    pesoliquido DECIMAL,
+    pesobruto DECIMAL,
+    estoqueminino INTEGER,
+    estoquemaximo INTEGER,
+    leadtime INTEGER,
+    loteminino INTEGER,
+    lotemaximo INTEGER,
+    ncm CHAR(20),
+    cest CHAR(20),
+    classificacao CHAR(20),
+    ativo BOOLEAN DEFAULT 1,
+    id_company INTEGER NOT NULL,
+    CONSTRAINT PK_clients PRIMARY KEY (id, id_company, nome),
+    FOREIGN KEY (id_company)
+        REFERENCES companies (id)
+);
+
+SELECT * FROM items;
