@@ -6,24 +6,24 @@ from models.Form import *
 def StoreRegister():
     form = ModelFormPeople()
     if request.method == 'POST':
-        nome = form.nome.data
-        razaosocial = form.razaosocial.data
-        tipo = form.tipo.data
+        nome = form.nome.data.upper()
+        razaosocial = form.razaosocial.data.upper()
+        tipo = form.tipo.data.upper()
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
-        rg = form.rg.data
-        endereco = form.endereco.data
+        rg = form.rg.data.upper()
+        endereco = form.endereco.data.upper()
         
-        numero = form.numero.data
-        complemento = form.complemento.data
-        bairro = form.bairro.data
-        cidade = form.cidade.data
-        uf = form.uf.data
+        numero = form.numero.data.upper()
+        complemento = form.complemento.data.upper()
+        bairro = form.bairro.data.upper()
+        cidade = form.cidade.data.upper()
+        uf = form.uf.data.upper()
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
-        email = form.email.data
+        email = form.email.data.lower()
         id_company = form.id_company.data
 
         try:
@@ -53,24 +53,24 @@ def StoreRegister():
 def StoreUpdate():
     form = ModelFormPeople()
     if request.method == 'POST':
-        nome = form.nome.data
-        razaosocial = form.razaosocial.data
-        tipo = form.tipo.data
+        nome = form.nome.data.upper()
+        razaosocial = form.razaosocial.data.upper()
+        tipo = form.tipo.data.upper()
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
-        rg = form.rg.data
-        endereco = form.endereco.data
+        rg = form.rg.data.upper()
+        endereco = form.endereco.data.upper()
         
-        numero = form.numero.data
-        complemento = form.complemento.data
-        bairro = form.bairro.data
-        cidade = form.cidade.data
-        uf = form.uf.data
+        numero = form.numero.data.upper()
+        complemento = form.complemento.data.upper()
+        bairro = form.bairro.data.upper()
+        cidade = form.cidade.data.upper()
+        uf = form.uf.data.upper()
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
-        email = form.email.data
+        email = form.email.data.lower()
         id = form.id.data
         id_company = form.id_company.data
 

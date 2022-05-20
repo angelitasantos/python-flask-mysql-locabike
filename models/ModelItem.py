@@ -6,18 +6,18 @@ from models.Form import *
 def ItemRegister():
     form = ModelFormItem()
     if request.method == 'POST':
-        grupo = form.grupo.data
-        subgrupo = form.subgrupo.data
-        nome = form.nome.data
-        descricao = form.descricao.data
-        un = form.un.data
-        tipo = form.tipo.data
-        codigointerno = form.codigointerno.data
+        grupo = form.grupo.data.upper()
+        subgrupo = form.subgrupo.data.upper()
+        nome = form.nome.data.upper()
+        descricao = form.descricao.data.upper()
+        un = form.un.data.upper()
+        tipo = form.tipo.data.upper()
+        codigointerno = form.codigointerno.data.upper()
         ean = form.ean.data
         dun = form.dun.data
 
-        cor = form.cor.data
-        tamanho = form.tamanho.data
+        cor = form.cor.data.upper()
+        tamanho = form.tamanho.data.upper()
         largura = form.largura.data
         altura = form.altura.data
         comprimento = form.comprimento.data
@@ -31,8 +31,8 @@ def ItemRegister():
         lotemaximo = form.lotemaximo.data
         ncm = form.ncm.data
         cest = form.cest.data
-        classificacao = form.classificacao.data
-        ativo = form.ativo.data
+        classificacao = form.classificacao.data.upper()
+        ativo = form.ativo.data.upper()
         id_company = form.id_company.data
 
         try:
@@ -68,18 +68,18 @@ def ItemRegister():
 def ItemUpdate():
     form = ModelFormItem()
     if request.method == 'POST':
-        grupo = form.grupo.data
-        subgrupo = form.subgrupo.data
-        nome = form.nome.data
-        descricao = form.descricao.data
-        un = form.un.data
-        tipo = form.tipo.data
-        codigointerno = form.codigointerno.data
+        grupo = form.grupo.data.upper()
+        subgrupo = form.subgrupo.data.upper()
+        nome = form.nome.data.upper()
+        descricao = form.descricao.data.upper()
+        un = form.un.data.upper()
+        tipo = form.tipo.data.upper()
+        codigointerno = form.codigointerno.data.upper()
         ean = form.ean.data
         dun = form.dun.data
 
-        cor = form.cor.data
-        tamanho = form.tamanho.data
+        cor = form.cor.data.upper()
+        tamanho = form.tamanho.data.upper()
         largura = form.largura.data
         altura = form.altura.data
         comprimento = form.comprimento.data
@@ -93,8 +93,8 @@ def ItemUpdate():
         lotemaximo = form.lotemaximo.data
         ncm = form.ncm.data
         cest = form.cest.data
-        classificacao = form.classificacao.data
-        ativo = form.ativo.data
+        classificacao = form.classificacao.data.upper()
+        ativo = form.ativo.data.upper()
         id = form.id.data
         id_company = form.id_company.data
 
