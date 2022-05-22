@@ -27,7 +27,7 @@
         </div>
         <div class="flex-col-4">
             <label class="label">Classificação</label>
-            <select id="tipo" class="select" name="tipo">
+            <select id="classificacao" class="select" name="classificacao">
                 <option value="{{ response.classificacao }}">{{ response.classificacao }}</option>
                 <option value="1">[1] - Produto para Revenda</option>
                 <option value="2">[2] - Produção Própria</option>
@@ -109,8 +109,12 @@
             {{ form.codigointerno (class="input", value=response.codigointerno) }}
         </div>
         <div class="flex-col-2">
-            {{ form.ativo.label(class="label") }}
-            {{ form.ativo(class="select") }}
+            <label class="label">Ativo</label>
+            <select id="ativo" class="select" name="ativo">
+                <option value="{{ response.ativo }}">{{ response.ativo }}</option>
+                <option value="1">[1] - ATIVO</option>
+                <option value="0">[0] - INATIVO</option>
+            </select>
         </div>
     </div>
 

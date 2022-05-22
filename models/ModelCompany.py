@@ -8,7 +8,7 @@ def CompanyRegister():
     if request.method == 'POST':
         nome = form.nome.data.upper()
         razaosocial = form.razaosocial.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
@@ -19,7 +19,7 @@ def CompanyRegister():
         complemento = form.complemento.data.upper()
         bairro = form.bairro.data.upper()
         cidade = form.cidade.data.upper()
-        uf = form.uf.data.upper()
+        uf = form.uf.data
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
@@ -53,7 +53,7 @@ def CompanyUpdate():
     if request.method == 'POST':
         nome = form.nome.data.upper()
         razaosocial = form.razaosocial.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
@@ -64,21 +64,22 @@ def CompanyUpdate():
         complemento = form.complemento.data.upper()
         bairro = form.bairro.data.upper()
         cidade = form.cidade.data.upper()
-        uf = form.uf.data.upper()
+        uf = form.uf.data
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
         email = form.email.data.lower()
+        ativo = form.ativo.data
         id = form.id.data
 
         cursor = mysql.connection.cursor()
         cursor.execute('''UPDATE companies 
         SET nome = %s, razaosocial = %s, tipo = %s, cnpj = %s, inscest = %s, cpf = %s, rg = %s,
         endereco = %s, numero = %s, complemento = %s, bairro = %s, cidade = %s,
-        uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s
+        uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s, ativo = %s
         WHERE id = %s''',
         [nome, razaosocial, tipo, cnpj, inscest, 
         cpf, rg, endereco, numero, complemento,
-        bairro, cidade, uf, cep, telefone1, telefone2, email, id])
+        bairro, cidade, uf, cep, telefone1, telefone2, email, ativo, id])
         mysql.connection.commit()
         flash("Company Updated Successfully...!!!", "success")

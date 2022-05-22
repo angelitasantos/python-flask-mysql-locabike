@@ -1,9 +1,9 @@
 <div class="flex-row">
-    <div class="flex-col">
+    <div class="flex-col-5">
         {{ form.nome.label (class="label") }}
         {{ form.nome (class="input", value=response.nome) }}
     </div>
-    <div class="flex-col">
+    <div class="flex-col-7">
         {{ form.razaosocial.label (class="label") }}
         {{ form.razaosocial (class="input", value=response.razaosocial) }}
     </div>
@@ -70,7 +70,7 @@
 </div>
 
 <div class="flex-row">
-    <div class="flex-col-9">
+    <div class="flex-col-7">
         {{ form.cidade.label (class="label") }}
         {{ form.cidade (class="input", value=response.cidade) }}
     </div>
@@ -105,6 +105,14 @@
             <option value="SP">São Paulo</option>
             <option value="SE">Sergipe</option>
             <option value="TO">Tocantins</option>
+        </select>
+    </div>
+    <div class="flex-col-2">
+        <label class="label">Ativo</label>
+        <select id="ativo" class="select" name="ativo">
+            <option value="{{ response.ativo }}">{{ response.ativo }}</option>
+            <option value="1">[1] - ATIVO</option>
+            <option value="0">[0] - INATIVO</option>
         </select>
     </div>
 </div>

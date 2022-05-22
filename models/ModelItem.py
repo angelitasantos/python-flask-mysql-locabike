@@ -11,7 +11,7 @@ def ItemRegister():
         nome = form.nome.data.upper()
         descricao = form.descricao.data.upper()
         un = form.un.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         codigointerno = form.codigointerno.data.upper()
         ean = form.ean.data
         dun = form.dun.data
@@ -31,8 +31,8 @@ def ItemRegister():
         lotemaximo = form.lotemaximo.data
         ncm = form.ncm.data
         cest = form.cest.data
-        classificacao = form.classificacao.data.upper()
-        ativo = form.ativo.data.upper()
+        classificacao = form.classificacao.data
+        ativo = form.ativo.data
         id_company = form.id_company.data
 
         try:
@@ -73,7 +73,7 @@ def ItemUpdate():
         nome = form.nome.data.upper()
         descricao = form.descricao.data.upper()
         un = form.un.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         codigointerno = form.codigointerno.data.upper()
         ean = form.ean.data
         dun = form.dun.data
@@ -93,8 +93,8 @@ def ItemUpdate():
         lotemaximo = form.lotemaximo.data
         ncm = form.ncm.data
         cest = form.cest.data
-        classificacao = form.classificacao.data.upper()
-        ativo = form.ativo.data.upper()
+        classificacao = form.classificacao.data
+        ativo = form.ativo.data
         id = form.id.data
         id_company = form.id_company.data
 

@@ -10,7 +10,7 @@ def ProviderRegister():
         subgrupo = form.subgrupo.data.upper()
         nome = form.nome.data.upper()
         razaosocial = form.razaosocial.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
@@ -21,7 +21,7 @@ def ProviderRegister():
         complemento = form.complemento.data.upper()
         bairro = form.bairro.data.upper()
         cidade = form.cidade.data.upper()
-        uf = form.uf.data.upper()
+        uf = form.uf.data
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
@@ -59,7 +59,7 @@ def ProviderUpdate():
         subgrupo = form.subgrupo.data.upper()
         nome = form.nome.data.upper()
         razaosocial = form.razaosocial.data.upper()
-        tipo = form.tipo.data.upper()
+        tipo = form.tipo.data
         cnpj = form.cnpj.data
         inscest = form.inscest.data
         cpf = form.cpf.data
@@ -70,11 +70,12 @@ def ProviderUpdate():
         complemento = form.complemento.data.upper()
         bairro = form.bairro.data.upper()
         cidade = form.cidade.data.upper()
-        uf = form.uf.data.upper()
+        uf = form.uf.data
         cep = form.cep.data
         telefone1 = form.telefone1.data
         telefone2 = form.telefone2.data
         email = form.email.data.lower()
+        ativo = form.ativo.data
         id = form.id.data
         id_company = form.id_company.data
 
@@ -82,11 +83,11 @@ def ProviderUpdate():
         cursor.execute('''UPDATE providers 
         SET grupo = %s, subgrupo = %s, nome = %s, razaosocial = %s, tipo = %s, cnpj = %s, inscest = %s, cpf = %s, rg = %s,
         endereco = %s, numero = %s, complemento = %s, bairro = %s, cidade = %s,
-        uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s, id_company = %s
+        uf = %s, cep = %s, telefone1 = %s, telefone2 = %s, email = %s, ativo = %s, id_company = %s
         WHERE id = %s''',
         [grupo, subgrupo, nome, razaosocial, tipo, 
         cnpj, inscest, cpf, rg, endereco, 
         numero, complemento, bairro, cidade, uf, 
-        cep, telefone1, telefone2, email, id_company, id])
+        cep, telefone1, telefone2, email, ativo, id_company, id])
         mysql.connection.commit()
         flash("Provider Updated Successfully...!!!", "success")

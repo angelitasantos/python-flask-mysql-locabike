@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS companies (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    active BOOLEAN DEFAULT 1,
+    ativo BOOLEAN DEFAULT 1,
     CONSTRAINT PK_companies PRIMARY KEY (id, email)
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS stores (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    active BOOLEAN DEFAULT 1,
+    ativo BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_stores PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS providers (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    active BOOLEAN DEFAULT 1,
+    ativo BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_providers PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS clients (
     telefone1 CHAR(15),
     telefone2 CHAR(15),
     email VARCHAR(50),
-    active BOOLEAN DEFAULT 1,
+    ativo BOOLEAN DEFAULT 1,
     id_company INTEGER NOT NULL,
     CONSTRAINT PK_clients PRIMARY KEY (id, id_company, email),
     FOREIGN KEY (id_company)
@@ -144,11 +144,11 @@ CREATE TABLE IF NOT EXISTS items (
     dun CHAR(14),
     cor CHAR(20),
     tamanho CHAR(10),
-    largura DECIMAL,
-    altura DECIMAL,
-    comprimento DECIMAL,
-    pesoliquido DECIMAL,
-    pesobruto DECIMAL,
+    largura FLOAT,
+    altura FLOAT,
+    comprimento FLOAT,
+    pesoliquido FLOAT,
+    pesobruto FLOAT,
     estoqueminino INTEGER,
     estoquemaximo INTEGER,
     leadtime INTEGER,
