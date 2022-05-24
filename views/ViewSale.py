@@ -1,5 +1,6 @@
 from models.ModelSale import *
 from models.Form import *
+import math
 
 
 @app.route('/brand_register', methods=['GET', 'POST'])
@@ -69,28 +70,40 @@ def create_product():
     return redirect(url_for('product_register'))
 
 
-@app.route('/product_list')
-def product_list():
+@app.route('/product_list', defaults={'page':1})
+@app.route('/product_list/page/<int:page>')
+def product_list(page):
     title = 'Products List'
     try:
         cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM brands'
+        query = 'SELECT *, b.description FROM products p JOIN brands b ON b.id = p.id_brand GROUP BY 9'
         cursor.execute(query)
         brands = cursor.fetchall()
-        cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM categories'
+        query = 'SELECT *, c.description FROM products p JOIN categories c ON c.id = p.id_category GROUP BY 10'
         cursor.execute(query)
         categories = cursor.fetchall()
         if session['amail'] != '':
+            perpage = 2
+            startat = (page - 1) * perpage
+
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM products'
-            cursor.execute(query)
+            cursor.execute('SELECT * FROM products')
+            response = cursor.fetchall()
+            cursor.close()
+            registers = cursor.rowcount
+            total_pages = math.ceil(registers / perpage)
+
+            next = page + 1
+            prev = page - 1
+
+            cursor = mysql.connection.cursor()
+            cursor.execute('SELECT * FROM products ORDER BY name ASC LIMIT %s, %s', (startat,perpage))
             response = cursor.fetchall()
             cursor.close()
             count = cursor.rowcount
             if count == 0:
                 flash('Product Not Found...!!!!', 'danger')
-            return render_template('/store/sale/product_list.html', response=response, brands=brands, categories=categories, title=title)
+            return render_template('/store/sale/product_list.html', response=response, page=total_pages, next=next, prev=prev, brands=brands, categories=categories, title=title)
     except Exception as e:
         print(e)
     return render_template('/pages/home.html', title = 'Home')
@@ -116,11 +129,11 @@ def brand_select(id):
     title = 'Product for Brand'
     try:
         cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM brands'
+        query = 'SELECT *, b.description FROM products p JOIN brands b ON b.id = p.id_brand GROUP BY 9'
         cursor.execute(query)
         brands = cursor.fetchall()
         cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM categories'
+        query = 'SELECT *, c.description FROM products p JOIN categories c ON c.id = p.id_category GROUP BY 10'
         cursor.execute(query)
         categories = cursor.fetchall()
         if session['amail'] != '':
@@ -144,11 +157,11 @@ def category_select(id):
     title = 'Product for Category'
     try:
         cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM brands'
+        query = 'SELECT *, b.description FROM products p JOIN brands b ON b.id = p.id_brand GROUP BY 9'
         cursor.execute(query)
         brands = cursor.fetchall()
         cursor = mysql.connection.cursor()
-        query = 'SELECT * FROM categories'
+        query = 'SELECT *, c.description FROM products p JOIN categories c ON c.id = p.id_category GROUP BY 10'
         cursor.execute(query)
         categories = cursor.fetchall()
         if session['amail'] != '':

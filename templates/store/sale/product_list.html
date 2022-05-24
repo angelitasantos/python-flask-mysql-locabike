@@ -39,7 +39,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {% for row in brands %}
                         <a class="dropdown-item"
-                            href="{{ url_for('brand_select', id=row['id']) }}">{{row['description']}}</a>
+                            href="{{ url_for('brand_select', id=row['b.id']) }}">{{row['b.description']}}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {% for row in categories %}
                         <a class="dropdown-item"
-                            href="{{ url_for('category_select', id=row['id']) }}">{{row['description']}}</a>
+                            href="{{ url_for('category_select', id=row['c.id']) }}">{{row['c.description']}}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -121,8 +121,25 @@
                             </td>
                         </tr>
                         {% endfor %}
+                        <nav aria-label="navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    {% if prev >= 1 %}
+                                    <a class="page-link" href="/product_list/page/{{ prev }}" tabindex="-1">Prev</a>
+                                    {% endif %}
+                                </li>
+                                {% for page in range(page) %}
+                                <li class="page-item"><a class="page-link" href="/product_list/page/{{ loop.index }}">{{
+                                        loop.index }}</a></li>
+                                {% endfor %}
+                                <li class="page-item">
+                                    {% if page >= next %}
+                                    <a class="page-link" href="/product_list/page/{{ next }}">Next</a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </nav>
                         {% endif %}
-
                     </tbody>
                 </table>
             </div>
