@@ -27,7 +27,7 @@
                     <select id="tipo" class="select" name="id_company">
                         <option value='1'>ESCOLHA UMA EMPRESA</option>
                         {% for row in response %}
-                        <option value="{{row['id']}}">{{row['nome'],row['cidade'],row['uf']}}</option>
+                        <option selected value="{{row['id']}}">{{row['nome'],row['cidade'],row['uf']}}</option>
                         {% endfor %}
                     </select>
                 </div>

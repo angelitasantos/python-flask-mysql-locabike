@@ -18,7 +18,7 @@
             {% include 'layout/message_alert.html' %}
 
             <div class="flex-row">
-                <div class="flex-col-3">
+                <div class="flex-col-2">
                     <label class="label">Tipo</label>
                     <select id="tipo" class="select" name="tipo">
                         <option value="{{ response.tipo }}">{{ response.tipo }}</option>
@@ -26,7 +26,15 @@
                         <option value="FISICA">Física</option>
                     </select>
                 </div>
-                <div class="flex-col-9 text-right">
+                <div class="flex-col-2">
+                    <label class="label">Ativo</label>
+                    <select id="ativo" class="select" name="ativo">
+                        <option value="{{ response.ativo }}">{{ response.ativo }}</option>
+                        <option value="1">[1] - SIM</option>
+                        <option value="0">[0] - NÃO</option>
+                    </select>
+                </div>
+                <div class="flex-col-7 text-right">
                     <input type="submit" class="input-submit" value="Edit Company"
                         onclick="return confirm('Are you sure to create?')">
                 </div>

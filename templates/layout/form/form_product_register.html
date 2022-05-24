@@ -1,0 +1,29 @@
+<div class="flex-row">
+    <div class="flex-col-5">
+        {{ form.name.label (class="label") }}
+        {{ form.name (class="input") }}
+    </div>
+    <div class="flex-col-7">
+        {{ form.description.label (class="label") }}
+        {{ form.description (class="input") }}
+    </div>
+</div>
+
+<div class="flex-row">
+    <div class="flex-col-3">
+        {{ form.price.label (class="label") }}
+        {{ form.price (class="input text-center") }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.discount.label (class="label") }}
+        {{ form.discount (class="input text-center") }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.stock.label(class="label") }}
+        {{ form.stock(class="input text-center") }}
+    </div>
+    <div class="flex-col-3">
+        {{ form.colors.label(class="label") }}
+        {{ form.colors(class="input text-center") }}
+    </div>
+</div>

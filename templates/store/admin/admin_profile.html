@@ -18,44 +18,71 @@
 
                 {% include 'layout/message_alert.html' %}
 
-                <div>
-                    <label class="label">Nome</label>
-                    <input type="text" name="aname" class="input" value="{{ response.aname }}" required>
-                </div>
-                <div>
-                    <input type="hidden" name="aid" value="{{ response.aid }}">
-                </div>
-                <div>
-                    <label class="label">Username</label>
-                    <input type="email" name="amail" disabled class="input" value="{{ response.amail }}">
-                </div>
-                <div>
-                    <input type="hidden" name="apassword" disabled class="input" value="{{ response.apassword }}">
-                </div>
-                <div class="flex-div">
-                    <div class="mright5">
-                        <label class="label">Site *</label>
-                        <input type="text" name="sitedata" class="input" value="{{ response.sitedata }}">
+                <div class="flex-row">
+                    <div class="flex-col-9">
+                        <label class="label">Nome</label>
+                        <input type="text" name="aname" class="input" value="{{ response.aname }}" required>
                     </div>
-                    <div class="mright5">
-                        <label class="label">Company *</label>
-                        <input type="text" name="companies" class="input" value="{{ response.companies }}">
+                    <div class="flex-col-3">
+                        <label class="label">Ativo</label>
+                        <select id="active" class="select" name="active">
+                            <option value="{{ response.active }}" class="text-center">{{ response.active }}
+                            </option>
+                            <option value="1">[1] - SIM</option>
+                            <option value="0">[0] - NÃO</option>
+                        </select>
                     </div>
-                    <div class="mright5">
-                        <label class="label">Store *</label>
-                        <input type="text" name="stores" class="input" value="{{ response.stores }}">
+                </div>
+                <div class="flex-row">
+                    <div class="flex-col-12">
+                        <label class="label">Username</label>
+                        <input type="email" name="amail" disabled class="input" value="{{ response.amail }}">
                     </div>
-                    <div>
-                        <label class="label">Admin *</label>
-                        <input type="text" name="admins" class="input" value="{{ response.admins }}">
+                </div>
+                <div class="flex-row">
+                    <div class="flex-col-3">
+                        <label class="label">Site</label>
+                        <select id="sitedata" class="select" name="sitedata">
+                            <option value="{{ response.sitedata }}" class="text-center">{{ response.sitedata }}</option>
+                            <option value="1">[1] - SIM</option>
+                            <option value="0">[0] - NÃO</option>
+                        </select>
+                    </div>
+                    <div class="flex-col-3">
+                        <label class="label">Company</label>
+                        <select id="companies" class="select" name="companies">
+                            <option value="{{ response.companies }}" class="text-center">{{ response.companies }}
+                            </option>
+                            <option value="1">[1] - SIM</option>
+                            <option value="0">[0] - NÃO</option>
+                        </select>
+                    </div>
+                    <div class="flex-col-3">
+                        <label class="label">Store</label>
+                        <select id="stores" class="select" name="stores">
+                            <option value="{{ response.stores }}" class="text-center">{{ response.stores }}</option>
+                            <option value="1">[1] - SIM</option>
+                            <option value="0">[0] - NÃO</option>
+                        </select>
+                    </div>
+                    <div class="flex-col-3">
+                        <label class="label">Admin</label>
+                        <select id="admins" class="select" name="admins">
+                            <option value="{{ response.admins }}" class="text-center">{{ response.admins }}</option>
+                            <option value="1">[1] - SIM</option>
+                            <option value="0">[0] - NÃO</option>
+                        </select>
                     </div>
                 </div>
                 <div class="text-center">
                     <input type="submit" class="input-submit" value="Update Admin Profile"
                         onclick="return confirm('Are you sure to edit?')">
                 </div>
-                <div class="text-right">
-                    <sub>* 0 = Não Habilitado - 1 = Habilitado</sub>
+                <div>
+                    <input type="hidden" name="aid" value="{{ response.aid }}">
+                </div>
+                <div>
+                    <input type="hidden" name="apassword" disabled class="input" value="{{ response.apassword }}">
                 </div>
             </form>
         </div>

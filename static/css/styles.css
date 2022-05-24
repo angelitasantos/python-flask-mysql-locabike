@@ -329,19 +329,11 @@
 
 /* ########################################################### */
 
-.field:not(:last-child) {
-    margin-bottom: 0.75em;
-}
-
 .label {
     color: var(--green1);
     display: block;
     font-size: 1em;
     font-weight: 700;
-}
-
-.label:not(:last-child) {
-    margin-bottom: 0.5em;
 }
 
 .input,
@@ -587,7 +579,7 @@
     color: var(--green6);
 }
 
-.wrapper .header-navbar .header-navbar-menu .sidebar-btn {
+.wrapper .header-navbar .header-navbar-menu .sidebar-btn-store {
     color: var(--light);
     position: absolute;
     margin-left: 220px;
@@ -598,7 +590,7 @@
     transition-property: color;
 }
 
-.wrapper .header-navbar .header-navbar-menu .sidebar-btn:hover {
+.wrapper .header-navbar .header-navbar-menu .sidebar-btn-store:hover {
     color: var(--green6);
 }
 
@@ -761,6 +753,11 @@
 
 
 /* ########################################################### */
+
+form .flex-row {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 .flex-row {
     display: flex;
