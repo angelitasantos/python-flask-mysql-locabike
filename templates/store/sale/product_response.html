@@ -1,0 +1,30 @@
+<p>{{ numrows }} Records Found</p>
+<div class="search-content">
+    <table class="table table-hover">
+        <thead class="thead">
+            <tr class="text-center">
+                <th class="bold">ID</th>
+                <th class="bold">Nome</th>
+                <th class="bold">Descrição</th>
+                <th class="bold">Preço</th>
+                <th class="bold">Desconto</th>
+                <th class="bold">Estoque</th>
+                <th class="bold">Adicionar Carrinho</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            {% for row in response %}
+            <tr class="text-center">
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.description }}</td>
+                <td>{{ row.price }}</td>
+                <td>{{ row.discount }}</td>
+                <td>{{ row.stock }}</td>
+                <td><a href="" class="input-edit"><i class="fa fa-plus"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

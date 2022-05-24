@@ -165,3 +165,45 @@ CREATE TABLE IF NOT EXISTS items (
 );
 
 SELECT * FROM items;
+
+
+CREATE TABLE IF NOT EXISTS brands (
+    id INTEGER AUTO_INCREMENT,
+    description VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_brands PRIMARY KEY (id, description)
+);
+
+SELECT * FROM brands;
+
+
+CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER AUTO_INCREMENT,
+    description VARCHAR(20) NOT NULL,
+    CONSTRAINT PK_categories PRIMARY KEY (id, description)
+);
+
+SELECT * FROM categories;
+
+
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(150),
+    price FLOAT,
+    discount FLOAT,
+    stock INTEGER,
+    colors VARCHAR(50),
+    image LONGBLOB,
+    id_brand INTEGER NOT NULL,
+    id_category INTEGER NOT NULL,
+    id_company INTEGER NOT NULL,
+    CONSTRAINT PK_products PRIMARY KEY (id, id_company, name),
+    FOREIGN KEY (id_brand)
+        REFERENCES brands (id),
+    FOREIGN KEY (id_category)
+        REFERENCES categories (id),
+    FOREIGN KEY (id_company)
+        REFERENCES companies (id)
+);
+
+SELECT * FROM products;

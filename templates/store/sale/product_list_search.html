@@ -1,0 +1,100 @@
+{% extends 'base_store.html' %}
+{% block container %}
+
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('product_list') }}">Product</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('product_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Product List</li>
+    </ol>
+</nav>
+
+<section class="section-list">
+    <div>
+        <div>
+            <h3 class="title"><i class="fa fa-bars"> {{ title }}</i></h3>
+
+            {% include 'layout/message_alert.html' %}
+
+            <div class="flex-row">
+                <div class="flex-col-6">
+                    <label class="label">Brands</label>
+                    <select id="id_brand" class="select" name="id_brand">
+                        {% for row in brands %}
+                        <option id="escolha" value="{{row['id']}}"><a
+                                href="{{ url_for('brand_select', id=row['id']) }}"></a>
+                            {{[row['id'],row['description']]}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex-col-6">
+                    <label class="label">Categories</label>
+                    <select id="id_category" class="select" name="id_category">
+                        {% for row in categories %}
+                        <option id="escolha" value="{{row['id']}}">
+                            {{[row['id'],row['description']]}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div><br>
+
+            <div class="flex-row">
+                <div class="flex-col-12">
+                    <div class="search-table">
+                        <div class="search-box">
+                            <label class="label">Pesquisar Produto</label>
+                            <input type="text" name="search_text" id="search_text" class="input"
+                                placeholder="Search Fields: Name, Description">
+                        </div>
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="table-content">
+                <table class="table table-hover">
+                    <thead class="thead">
+                        <tr class="text-center">
+                            <th class="bold">ID</th>
+                            <th class="bold">Nome</th>
+                            <th class="bold">Descrição</th>
+                            <th class="bold">Preço</th>
+                            <th class="bold">Desconto</th>
+                            <th class="bold">Estoque</th>
+                            <th class="bold">Cores</th>
+                            <th class="bold">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        {% if brand %}
+                        {% for row in brand %}
+                        <tr class="text-center">
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.description }}</td>
+                            <td>{{ row.price }}</td>
+                            <td>{{ row.discount }}</td>
+                            <td>{{ row.stock }}</td>
+                            <td>{{ row.colors }}</td>
+                            <td><a href="" class="input-edit" onclick="return confirm('Are you sure to edit?')"><i
+                                        class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block script %}
+<script src="{{ url_for('static', filename = 'js/search/search_product.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

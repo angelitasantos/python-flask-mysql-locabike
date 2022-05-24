@@ -579,7 +579,7 @@
     color: var(--green6);
 }
 
-.wrapper .header-navbar .header-navbar-menu .sidebar-btn {
+.wrapper .header-navbar .header-navbar-menu .sidebar-btn-store {
     color: var(--light);
     position: absolute;
     margin-left: 220px;
@@ -590,7 +590,7 @@
     transition-property: color;
 }
 
-.wrapper .header-navbar .header-navbar-menu .sidebar-btn:hover {
+.wrapper .header-navbar .header-navbar-menu .sidebar-btn-store:hover {
     color: var(--green6);
 }
 

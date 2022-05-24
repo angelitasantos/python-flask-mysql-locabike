@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect, flash, session, req
 from conexao_mysql import *
 from flask_wtf import FlaskForm
 from wtforms import (StringField, SubmitField, DateTimeField, RadioField, BooleanField, PasswordField, IntegerField,
-                        DecimalField, SelectField, TextAreaField, DateField)
+                        DecimalField, SelectField, TextAreaField, DateField, FileField)
 from wtforms.validators import DataRequired, InputRequired, Length
 
 
@@ -102,4 +102,23 @@ class ModelFormItem(FlaskForm):
     
     ativo = BooleanField('Ativo')
     id = StringField('ID')
+    id_company = SelectField('Company')
+
+
+class ModelFormGroup(FlaskForm):
+    description = StringField('Descrição', validators=[DataRequired(), Length(min=4, max=20)])
+    id = StringField('ID')
+
+
+class ModelFormProduct(FlaskForm):
+    name = StringField('Nome', validators=[DataRequired(), Length(min=4, max=50)])
+    description = StringField('Descrição', validators=[DataRequired(), Length(min=4, max=150)])
+    price = DecimalField('Preço')
+    discount = DecimalField('Desconto')
+    stock = IntegerField('Estoque')
+    colors = StringField('Cores', validators=[Length(min=2, max=50)])
+    image = FileField('Imagem')
+    id = StringField('ID')
+    id_brand = SelectField('Brand')
+    id_category = SelectField('Category')
     id_company = SelectField('Company')

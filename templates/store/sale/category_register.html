@@ -1,0 +1,61 @@
+{% extends 'base_store.html' %}
+{% block container %}
+
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Item</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('item_list') }}">Sale</a></li>
+        <li class="viewgroup-item active" aria-current="page">Category Register</li>
+    </ol>
+</nav>
+
+<section class="section-company">
+    <div class="content-company">
+        <h3 class="title"><i class="fa fa-plus"> {{ title }}</i></h3>
+        <br>
+        <form method="POST" action="/create_category">
+
+            {% include 'layout/message_alert.html' %}
+
+            <div class="flex-row">
+                <div class="flex-col-1"></div>
+                <div class="flex-col-8">
+                    {{ form.description.label (class="label") }}
+                    {{ form.description (class="input") }}
+                </div>
+                <div class=" flex-col-3 text-center">
+                    <input type="submit" class="input-submit" value="Create New Category"
+                        onclick="return confirm('Are you sure to create?')">
+                </div>
+            </div>
+        </form>
+        <div class="table-content">
+            <table class="table table-hover">
+                <thead class="thead">
+                    <tr class="text-center">
+                        <th class="bold">ID</th>
+                        <th class="bold">Descrição</th>
+                        <th class="bold">Edit</th>
+                        <th class="bold">Del</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody text-center">
+                    {% for row in response %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.description }}</td>
+                        <td><a href="" class="input-edit" onclick="return confirm('Are you sure to edit?')"><i
+                                    class="fa fa-edit"></i></a>
+                        </td>
+                        <td><a href="" class="input-delete" onclick="return confirm('Are you sure to edit?')"><i
+                                    class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

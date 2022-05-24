@@ -1,0 +1,73 @@
+{% extends 'base_store.html' %}
+{% block container %}
+
+<nav aria-label="viewgroup">
+    <ol class="viewgroup">
+        <li class="viewgroup-item"><a href="{{ url_for('product_list') }}">Product</a></li>
+        <li class="viewgroup-item"><a href="{{ url_for('product_list') }}">Sales</a></li>
+        <li class="viewgroup-item active" aria-current="page">Product Register</li>
+    </ol>
+</nav>
+
+<section class="section-company">
+    <div class="content-company">
+        <h3 class="title"><i class="fa fa-plus"> {{ title }}</i></h3>
+        <br>
+        <form method="POST" action="/create_product" enctype="multipart/form-data">
+
+            {% include 'layout/message_alert.html' %}
+
+            <div class="flex-row">
+                <div class="flex-col-9">
+                    <label class="label">Company</label>
+                    <select id="tipo" class="select" name="id_company">
+                        <option value='1'>ESCOLHA UMA EMPRESA</option>
+                        {% for row in response %}
+                        <option selected value="{{row['id']}}">{{row['nome'],row['cidade'],row['uf']}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class=" flex-col-3 text-right">
+                    <input type="submit" class="input-submit" value="Create New Product"
+                        onclick="return confirm('Are you sure to create?')">
+                </div>
+                <div>
+                    <input type="hidden" name="ativo" value="1">
+                </div>
+            </div>
+
+            {% include 'layout/form/form_product_register.html' %}
+
+            <div class="flex-row">
+                <div class="flex-col-6">
+                    <label class="label">Brand</label>
+                    <select id="id_brand" class="select" name="id_brand">
+                        <option value='1'>ESCOLHA UMA MARCA</option>
+                        {% for brand in brands %}
+                        <option selected value="{{brand['id']}}">{{brand['description']}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex-col-6">
+                    <label class="label">Category</label>
+                    <select id="id_category" class="select" name="id_category">
+                        <option value='1'>ESCOLHA UMA CATEGORIA</option>
+                        {% for category in categories %}
+                        <option selected value="{{category['id']}}">{{category['description']}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex-row">
+                <label class="label">Incluir imagem</label>
+                <div>
+                    <input name="image" type="file" class="input">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+{% endblock %}
