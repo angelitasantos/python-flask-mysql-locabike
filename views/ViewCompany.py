@@ -26,8 +26,7 @@ def company_list():
     try:
         if session['amail'] != '' and session['companies'] == 1:
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM companies ORDER BY nome'
-            cursor.execute(query)
+            cursor.execute('SELECT * FROM companies ORDER BY nome')
             response = cursor.fetchall()
             cursor.close()
             count = cursor.rowcount
@@ -37,22 +36,6 @@ def company_list():
     except Exception as error:
         print(error)
     return render_template('/pages/home.html', title='Home')
-
-
-@app.route("/companyrecords",methods=["POST","GET"])
-def companyrecords():
-    cursor = mysql.connection.cursor()
-    if request.method == 'POST':
-        query = request.form['query']
-        if query == '':
-            cursor.execute("SELECT * FROM companies ORDER BY nome ASC")
-            responselist = cursor.fetchall()
-        else:
-            search_text = request.form['query']
-            print(search_text)
-            cursor.execute("SELECT * FROM companies ORDER BY nome ASC", [search_text])
-            responselist = cursor.fetchall()  
-    return jsonify({'htmlresponse': render_template('/store/company/company_response.html', responselist=responselist)})
 
 
 @app.route('/company_edit/<string:id>')
@@ -88,9 +71,7 @@ def delete_companies(id):
     try:
         if session['amail'] != '' and session['companies'] == 1:
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM companies'
-            cursor.execute(query)
-            data = cursor.fetchall()
+            cursor.execute('SELECT * FROM companies')
             cursor.close()
             count = cursor.rowcount
             if count == 1:

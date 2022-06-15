@@ -2,6 +2,16 @@ from models.ModelStore import *
 from models.Form import *
 
 
+select_company = '''SELECT id, nome, cidade, uf 
+                    FROM companies 
+                    ORDER BY nome ASC'''
+select_companies = '''  SELECT *, c.nome 
+                        FROM stores s 
+                        JOIN companies c 
+                        ON c.id = s.id_company 
+                        GROUP BY 20'''
+
+
 @app.route('/store_register', methods=['GET', 'POST'])
 def store_register():
     title = 'Store Register'
@@ -9,7 +19,7 @@ def store_register():
     try:
         if session['amail'] != '' and session['stores'] == 1:
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+            cursor.execute(select_company)
             response = cursor.fetchall()
             return render_template('/store/store/store_register.html', response=response, title=title, form=form)
     except Exception as error:
@@ -28,7 +38,7 @@ def store_list():
     title = 'Stores List'
     try:
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+        cursor.execute(select_companies)
         companies = cursor.fetchall()
         if session['amail'] != '' and session['stores'] == 1:
             cursor = mysql.connection.cursor()
@@ -44,20 +54,28 @@ def store_list():
     return render_template('/pages/home.html', title='Home')
 
 
-@app.route("/storerecords",methods=["POST","GET"])
-def storerecords():
-    cursor = mysql.connection.cursor()
-    if request.method == 'POST':
-        query = request.form['query']
-        if query == '':
-            cursor.execute("SELECT * FROM stores ORDER BY nome ASC")
-            responselist = cursor.fetchall()
-        else:
-            search_text = request.form['query']
-            print(search_text)
-            cursor.execute("SELECT * FROM stores WHERE id_company IN (%s) ORDER BY nome ASC", [search_text])
-            responselist = cursor.fetchall()  
-    return jsonify({'htmlresponse': render_template('/store/store/store_response.html', responselist=responselist)})
+@app.route('/company_store_select/<string:id>')
+def company_store_select(id):
+    title = 'Store for Company'
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute(select_companies)
+        companies = cursor.fetchall()
+        if session['amail'] != '':
+            cursor = mysql.connection.cursor()
+            query = ''' SELECT * FROM stores s 
+                        WHERE s.id_company = %s'''
+            cursor.execute(query,[id])
+            company = cursor.fetchall()
+            cursor.close()
+            count = cursor.rowcount
+            if count != 0:
+                return render_template('/store/store/store_list.html', companies=companies, company=company, title=title)
+            else:
+                return render_template('/store/store/store_list.html', companies=companies, company=company, title=title)
+    except Exception as error:
+        print(error)
+    return render_template('/pages/home.html', title='Home')
 
 
 @app.route('/store_edit/<string:id>')
@@ -66,7 +84,7 @@ def store_edit(id):
     form = ModelFormPeople()
     try:
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+        cursor.execute(select_company)
         companies = cursor.fetchall()
         if session['amail'] != '' and session['stores'] == 1:
             cursor = mysql.connection.cursor()
@@ -96,9 +114,7 @@ def delete_stores(id):
     try:
         if session['amail'] != '' and session['stores'] == 1:
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM stores'
-            cursor.execute(query)
-            data = cursor.fetchall()
+            cursor.execute('SELECT * FROM stores')
             cursor.close()
             count = cursor.rowcount
             if count == 1:

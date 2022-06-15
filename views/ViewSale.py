@@ -109,21 +109,6 @@ def product_list(page):
     return render_template('/pages/home.html', title = 'Home')
 
 
-@app.route("/product_search", methods = ["POST","GET"])
-def product_search():
-    cursor = mysql.connection.cursor()
-    if request.method == 'POST':
-        search_word = request.form['query']
-        print(search_word)
-        if search_word != '':
-            query = "SELECT * from products WHERE name LIKE '%{}%' OR description LIKE '%{}%' ORDER BY name ASC LIMIT 20".format(search_word,search_word)
-            cursor.execute(query)
-            numrows = int(cursor.rowcount)
-            response = cursor.fetchall()
-            print(numrows)
-    return jsonify({'htmlresponse': render_template('/store/sale/product_response.html', response=response, numrows=numrows)})
-
-
 @app.route('/brand_select/<string:id>')
 def brand_select(id):
     title = 'Product for Brand'
@@ -178,6 +163,3 @@ def category_select(id):
     except Exception as error:
         print(error)
     return render_template('/pages/home.html', title='Home')
-
-
-

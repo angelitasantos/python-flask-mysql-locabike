@@ -1,4 +1,4 @@
-{% extends 'base_store.html' %}
+{% extends 'base_bootstrap.html' %}
 {% block container %}
 
 <nav aria-label="viewgroup">
@@ -21,12 +21,38 @@
         </div>
 
         <div class="table-content">
-            <table class="table table-hover">
+            <table class="table table-hover table-sm">
                 <thead class="thead">
-
+                    <tr class="text-center">
+                        <th class="bold">ID</th>
+                        <th class="bold">Name</th>
+                        <th class="bold">Mail</th>
+                        <th class="bold">Phone1</th>
+                        <th class="bold">Address</th>
+                        <th class="bold">City</th>
+                        <th class="bold">State</th>
+                        <th class="bold">Edit</th>
+                        <th class="bold">Del</th>
+                    </tr>
                 </thead>
-                <tbody class="tbody">
-
+                <tbody class="tbody text-center">
+                    {% for row in response %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.nome }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.telefone1 }}</td>
+                        <td>{{ row.endereco }}</td>
+                        <td>{{ row.cidade }}</td>
+                        <td>{{ row.uf }}</td>
+                        <td><a href="{{ url_for('company_edit', id=row['id']) }}" class="input-edit"
+                                onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td><a href="{{ url_for('delete_companies', id=row['id']) }}" class="input-delete"
+                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -35,9 +61,5 @@
 
     </div>
 </section>
-
-{% block script %}
-<script src="{{ url_for('static', filename = 'js/search/search_company.js') }}"></script>
-{% endblock %}
 
 {% endblock %}
