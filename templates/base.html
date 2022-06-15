@@ -6,13 +6,14 @@
     {% include 'layout/static_css.html' %}
 </head>
 
-<body>
+<body onload="relogio();">
 
     {% include 'layout/header.html' %}
 
     {% block container %}
     {% endblock %}
 
+    <div class="text-center" id="data-local"></div>
     {% include 'layout/footer.html' %}
 
     {% include 'layout/static_js.html' %}

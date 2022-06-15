@@ -1,4 +1,4 @@
-{% extends 'base_store.html' %}
+{% extends 'base_bootstrap.html' %}
 {% block container %}
 
 <nav aria-label="viewgroup">
@@ -15,31 +15,83 @@
 
         {% include 'layout/message_alert.html' %}
 
-        <div class="flex-between">
-            <div class="flex-col-1">
-                <label class="label">Company</label>
+        <div class="flex-row">
+            <div class="dropdown flex-col-2">
+                <a class="" href="{{ url_for('provider_list') }}">
+                    All Provider
+                </a>
             </div>
-            <div class="flex-col-9">
-                <select name="search_filter" id="search_filter" class="select">
-                    <option value="">Escolha uma Empresa</option>';
+            <div class="dropdown flex-col-7">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Companies <a href="{{ url_for('company_list') }}"><button class="btn btn-sm ml-2">+</button></a>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     {% for row in companies %}
-                    <option id="escolha" value="{{row['id']}}">{{[row['id'],row['nome'],row['cidade'],row['uf']]}}
-                    </option>
+                    <a class="dropdown-item"
+                        href="{{ url_for('company_provider_select', id=row['c.id']) }}">{{row['c.nome']}}</a>
                     {% endfor %}
-                </select>
-                <input type="hidden" name="hidden_value" id="hidden_value" />
+                </div>
             </div>
-            <div><a href="{{ url_for('provider_register') }}" class="input-submit">Add New Provider</a>
+            <div class="flex-col-3 text-right"><a href="{{ url_for('provider_register') }}" class="input-submit">
+                    Add New Provider</a>
             </div>
-        </div>
+        </div><br>
 
         <div class="table-content">
-            <table class="table table-hover">
+            <table class="table table-hover table-sm">
                 <thead class="thead">
-
+                    <tr class="text-center">
+                        <th class="bold">ID</th>
+                        <th class="bold">Name</th>
+                        <th class="bold">Mail</th>
+                        <th class="bold">Phone</th>
+                        <th class="bold">Address</th>
+                        <th class="bold">City</th>
+                        <th class="bold">State</th>
+                        <th class="bold">Edit</th>
+                        <th class="bold">Del</th>
+                    </tr>
                 </thead>
                 <tbody class="tbody">
-
+                    {% if company %}
+                    {% for row in company %}
+                    <tr class="text-center">
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.nome }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.telefone1 }}</td>
+                        <td>{{ row.endereco }}</td>
+                        <td>{{ row.cidade }}</td>
+                        <td>{{ row.uf }}</td>
+                        <td><a href="{{ url_for('provider_edit', id=row['id']) }}" class="input-edit"
+                            onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td><a href="{{ url_for('delete_providers', id=row['id']) }}" class="input-delete"
+                            onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    {% for row in response %}
+                    <tr class="text-center">
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.nome }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.telefone1 }}</td>
+                        <td>{{ row.endereco }}</td>
+                        <td>{{ row.cidade }}</td>
+                        <td>{{ row.uf }}</td>
+                        <td><a href="{{ url_for('provider_edit', id=row['id']) }}" class="input-edit"
+                                onclick="return confirm('Are you sure to edit?')"><i class="fa fa-edit"></i></a>
+                        </td>
+                        <td><a href="{{ url_for('delete_providers', id=row['id']) }}" class="input-delete"
+                                onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -47,9 +99,5 @@
         <br>
     </div>
 </section>
-
-{% block script %}
-<script src="{{ url_for('static', filename = 'js/search/search_provider.js') }}"></script>
-{% endblock %}
 
 {% endblock %}

@@ -316,7 +316,7 @@
 }
 
 .section-contact {
-    min-width: 600px;
+    width: 600px;
     padding: 30px;
 }
 
@@ -344,6 +344,20 @@
     color: var(--green1);
     font-size: 1em;
     padding: calc(0.4em - 1px);
+}
+
+.subject select {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    outline: none;
+    background-color: var(--light);
+    border-color: var(--green2);
+    border-radius: 4px;
+    color: var(--green1);
+    font-size: 1em;
+    padding: calc(0.4em - 1px);
+    position: relative;
 }
 
 .select {
@@ -713,6 +727,11 @@
 
 .wrapper .sidebar .sidebar-menu .sidebar-menu-item:target .sub-menu {
     max-height: 500px;
+}
+
+.wrapper .relogio {
+    margin: 30px 0;
+    color: var(--green6);;
 }
 
 

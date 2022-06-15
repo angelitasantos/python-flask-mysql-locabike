@@ -2,6 +2,16 @@ from models.ModelClient import *
 from models.Form import *
 
 
+select_company = '''SELECT id, nome, cidade, uf 
+                    FROM companies 
+                    ORDER BY nome ASC'''
+select_companies = '''  SELECT *, c.nome 
+                        FROM clients cl 
+                        JOIN companies c 
+                        ON c.id = cl.id_company 
+                        GROUP BY 22'''
+
+
 @app.route('/client_register', methods=['GET', 'POST'])
 def client_register():
     title = 'Client Register'
@@ -9,7 +19,7 @@ def client_register():
     try:
         if session['amail'] != '':
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+            cursor.execute(select_company)
             response = cursor.fetchall()
             return render_template('/store/client/client_register.html', response=response, title=title, form=form)
     except Exception as error:
@@ -28,11 +38,13 @@ def client_list():
     title = 'Clients List'
     try:
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+        cursor.execute(select_companies)
         companies = cursor.fetchall()
         if session['amail'] != '':
             cursor = mysql.connection.cursor()
-            cursor.execute('SELECT * FROM clients cl JOIN companies c ON c.id = cl.id_company ORDER BY cl.nome ASC')
+            cursor.execute('''  SELECT * FROM clients cl 
+                                JOIN companies c ON c.id = cl.id_company 
+                                ORDER BY cl.nome ASC''')
             response = cursor.fetchall()
             cursor.close()
             count = cursor.rowcount
@@ -44,20 +56,28 @@ def client_list():
     return render_template('/pages/home.html', title='Home')
 
 
-@app.route("/clientrecords",methods=["POST","GET"])
-def clientrecords():
-    cursor = mysql.connection.cursor()
-    if request.method == 'POST':
-        query = request.form['query']
-        if query == '':
-            cursor.execute("SELECT * FROM clients ORDER BY nome ASC")
-            responselist = cursor.fetchall()
-        else:
-            search_text = request.form['query']
-            print(search_text)
-            cursor.execute("SELECT * FROM clients WHERE id_company IN (%s) ORDER BY nome ASC", [search_text])
-            responselist = cursor.fetchall()  
-    return jsonify({'htmlresponse': render_template('/store/client/client_response.html', responselist=responselist)})
+@app.route('/company_client_select/<string:id>')
+def company_client_select(id):
+    title = 'Client for Company'
+    try:
+        cursor = mysql.connection.cursor()
+        cursor.execute(select_companies)
+        companies = cursor.fetchall()
+        if session['amail'] != '':
+            cursor = mysql.connection.cursor()
+            query = ''' SELECT * FROM clients cl 
+                        WHERE cl.id_company = %s'''
+            cursor.execute(query,[id])
+            company = cursor.fetchall()
+            cursor.close()
+            count = cursor.rowcount
+            if count != 0:
+                return render_template('/store/client/client_list.html', companies=companies, company=company, title=title)
+            else:
+                return render_template('/store/client/client_list.html', companies=companies, company=company, title=title)
+    except Exception as error:
+        print(error)
+    return render_template('/pages/home.html', title='Home')
 
 
 @app.route('/client_edit/<string:id>')
@@ -66,11 +86,13 @@ def client_edit(id):
     form = ModelFormPeople()
     try:
         cursor = mysql.connection.cursor()
-        cursor.execute('SELECT id, nome, cidade, uf FROM companies ORDER BY nome ASC')
+        cursor.execute(select_company)
         companies = cursor.fetchall()
         if session['amail'] != '':
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM clients cl JOIN companies c ON c.id = cl.id_company WHERE cl.id = %s'
+            query = ''' SELECT * FROM clients cl 
+                        JOIN companies c ON c.id = cl.id_company 
+                        WHERE cl.id = %s'''
             cursor.execute(query,[id])
             response = cursor.fetchone()
             cursor.close()
@@ -93,9 +115,7 @@ def delete_clients(id):
     try:
         if session['amail'] != '':
             cursor = mysql.connection.cursor()
-            query = 'SELECT * FROM clients'
-            cursor.execute(query)
-            data = cursor.fetchall()
+            cursor.execute('SELECT * FROM clients')
             cursor.close()
             count = cursor.rowcount
             if count == 1:
@@ -108,6 +128,6 @@ def delete_clients(id):
         elif session['amail'] != '' and session['companies'] == 0:
             flash('Dont Have Access To This functionality...!!!!', 'danger')
             return render_template('/layout/store.html', title = 'Store')
-    except Exception as e:
-        print(e)
+    except Exception as error:
+        print(error)
     return redirect(url_for('client_list'))
