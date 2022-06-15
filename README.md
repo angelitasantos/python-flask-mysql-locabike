@@ -10,6 +10,11 @@
 - pip install flask-bcrypt
 
 
+### Acesso a área restrita
+username: admin@admin.com
+senha: 123
+
+
 ### Admin
 
 - [Sign in](https://github.com/angelitasantos/python-flask-mysql-locabike/blob/main/templates/store/admin/admin.html)
